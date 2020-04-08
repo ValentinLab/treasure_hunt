@@ -1,0 +1,11 @@
+#### .gitignore ####
+
+## Ecplise ##
+bin/
+.project
+.classpath
+
+## OS ##
+.DS_Store
+[Dd]esktop.ini
+$RECYCLE.BIN/
