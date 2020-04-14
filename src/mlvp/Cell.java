@@ -3,7 +3,7 @@ package mlvp;
 public abstract class Cell implements Questionnable {
 	// ----- Attributs -----
 	
-	private Position pos;
+	protected Position pos;
 	
 	//  ----- Fonctions -----
 
