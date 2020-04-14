@@ -1,12 +1,15 @@
 package mlvp;
 
 public class Free extends Cell {
-	boolean isTaken;
 	
+    boolean isTaken;
+	
+    // ----- Constructeur -----
 	Free(Position pos){
 		this.pos = pos;
 	}
 	
+    // ----- Fonctions -----
 	public void setTaken(){
 		isTaken = !isTaken;
 	}
