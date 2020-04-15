@@ -10,7 +10,7 @@ public class Side extends Cell {
 	// ----- Fonctions -----
 	
 	public void process(Hunter h) {
-		Hunter.getDir().seOpposite();
+		h.getDir().setOposite();
 	}
 	
 	public String getSymbol() {

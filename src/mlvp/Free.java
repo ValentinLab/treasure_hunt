@@ -1,30 +1,33 @@
 package mlvp;
 
 public class Free extends Cell {
+	// ----- Attributs -----
 	
-    boolean isTaken;
+    Hunter player;
 	
     // ----- Constructeur -----
-	Free(Position pos){
-		this.pos = pos;
+    
+	Free(Position p){
+		pos = p;
+		player = null;
 	}
 	
     // ----- Fonctions -----
-	public void setTaken(){
-		isTaken = !isTaken;
-	}
-	public String getSymbol() {
-		return(".");
-	}
 	
 	public void process(Hunter h) {
-		if(isTaken) {
-			h.getDir().setDir();
+		if(player ==  null) {
+			h.getDir().setNear(h.getPos());
 			h.setPos(pos);
-		}
-		else {
-			h.getDir().setOpposite();
+		} else {
+			h.getDir().setRandom();
 		}
 	}
 	
+	public String getSymbol() {
+		if(player == null) {
+			return ".";
+		}
+		
+		return player.toString();
+	}
 }
