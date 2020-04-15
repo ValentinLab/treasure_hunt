@@ -2,11 +2,11 @@ package mlvp;
 
 public enum CardinalPoint {
 	NORTH,
-	EAST,
-	SOUTH,
-	WEST,
 	NORTH_EAST,
-	NORTH_WEST,
-	SOUTH_EASR,
-	SOUTH_WEST
+	EAST,
+	SOUTH_EAST,
+	SOUTH,
+	SOUTH_WEST,
+	WEST,
+	NORTH_WEST,	
 }

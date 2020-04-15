@@ -16,7 +16,7 @@ public class Free extends Cell {
 	
 	public void process(Hunter h) {
 		if(player ==  null) {
-			h.getDir().setNear(h.getPos());
+			h.getDir().setNear(h);
 			h.setPos(pos);
 		} else {
 			h.getDir().setRandom();

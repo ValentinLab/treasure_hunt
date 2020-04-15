@@ -6,12 +6,18 @@ public class Hunter {
 	private String name;
 	private Direction dir;
 	private Position pos;
+	private Position treasurePos;
 	
 	// ----- Constructeur -----
 	
-	public Hunter(String n, Position p) {
+	public Hunter(String n, Position p, Position treasure) {
 		name = n;
 		pos = p;
+		treasurePos = treasure;
+	}
+	
+	public Hunter(String n, Position p) {
+		this(n, p, null);
 	}
 	
 	// ----- Getters -----
@@ -24,10 +30,18 @@ public class Hunter {
 		return pos;
 	}
 	
+	public Position getTreasurePos() {
+		return treasurePos;
+	}
+	
 	//  ----- Setter -----
 	
 	public void setPos(Position p) {
 		pos = p;
+	}
+	
+	public void setTreasurePos(Position p) {
+		treasurePos = p;
 	}
 	
 	// ----- Fonctions -----

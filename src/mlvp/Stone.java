@@ -14,7 +14,7 @@ public class Stone extends Cell {
 	}
 	
 	public void process(Hunter h) {
-		h.getDir().setNear(h.getPos());
+		h.getDir().setNear(h);
 	}
 
 }
