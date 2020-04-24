@@ -4,26 +4,32 @@ public class Free extends Cell {
 	// ----- Attributs -----
 	
     Hunter player;
-	
+
     // ----- Constructeur -----
     
-	Free(Position p){
+	public Free(Position p){
 		pos = p;
 		player = null;
 	}
+
+	public Free(int x, int y) {
+		this(new Position(x +1, y +1));
+	}
+
 	
     // ----- Fonctions -----
 	
 	public void process(Hunter h) {
 		if(player ==  null) {
-			h.getDir().setNear(h);
-			h.setPos(pos);
+			player = h;
+			player.getDir().setNear(h);
+			player.setPos(pos);
 		} else {
-			h.getDir().setRandom();
+			player.getDir().setRandom();
 		}
 	}
 	
-	public String getSymbol() {
+	public String toString() {
 		if(player == null) {
 			return ".";
 		}

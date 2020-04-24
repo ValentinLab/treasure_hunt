@@ -12,7 +12,7 @@ public class Direction {
 	}
 	
 	public Direction() {
-		this(CardinalPoint.values()[(int)(Math.random() * 8 + 1)]);
+		this(CardinalPoint.values()[(int)(Math.random() * 8)]);
 	}
 	
 	// -----  Fonctions -----

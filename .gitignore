@@ -5,6 +5,10 @@ bin/
 .project
 .classpath
 
+## IDEA ##
+.idea
+*.iml
+
 ## OS ##
 .DS_Store
 [Dd]esktop.ini

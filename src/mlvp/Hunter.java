@@ -3,21 +3,22 @@ package mlvp;
 public class Hunter {
 	// ----- Attributs -----
 	
-	private String name;
+	private char name;
 	private Direction dir;
 	private Position pos;
 	private Position treasurePos;
 	
 	// ----- Constructeur -----
 	
-	public Hunter(String n, Position p, Position treasure) {
+	public Hunter(char n, Position p, Position treasure) {
+		dir = new Direction();
 		name = n;
 		pos = p;
 		treasurePos = treasure;
 	}
 	
-	public Hunter(String n, Position p) {
-		this(n, p, null);
+	public Hunter(char n, Position p) {
+		this(n, p, new Position(1, 1));
 	}
 	
 	// ----- Getters -----
@@ -47,6 +48,6 @@ public class Hunter {
 	// ----- Fonctions -----
 	
 	public String toString() {
-		return name;
+		return String.valueOf(name);
 	}
 }

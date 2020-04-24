@@ -3,19 +3,22 @@ package mlvp;
 public class Stone extends Cell {
 	// ----- Constructeur -----
 	
-	Stone(Position pos){
-		this.pos = pos;
+	public Stone(Position p) {
+		pos = p;
+	}
+
+	public Stone(int x, int y) {
+		this(new Position(x + 1, y +1));
 	}
 	
-    // ----- Functions -----
-	
-	public String getSymbol() {
-		return("#");
-	}
+	// ----- Functions -----
 	
 	public void process(Hunter h) {
 		h.getDir().setNear(h);
 	}
 
+	public String toString() {
+		return("#");
+	}
 }
 

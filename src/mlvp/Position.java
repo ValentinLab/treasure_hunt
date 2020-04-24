@@ -13,6 +13,16 @@ public class Position {
 		posY = y;
 	}
 	
+	// ----- Getters -----
+	
+	public int getPosX() {
+		return posX;
+	}
+	
+	public int getPosY() {
+		return posY;
+	}
+	
 	// ----- Fonctions -----
 	
 	public static int computeDistance(Position from, Position to) {

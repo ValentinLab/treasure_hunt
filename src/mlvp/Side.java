@@ -6,6 +6,10 @@ public class Side extends Cell {
 	public Side(Position p) {
 		pos = p;
 	}
+
+	public Side(int x, int y) {
+		this(new Position(x + 1, y + 1));
+	}
 	
 	// ----- Fonctions -----
 	
@@ -13,7 +17,7 @@ public class Side extends Cell {
 		h.getDir().setOpposite();
 	}
 	
-	public String getSymbol() {
+	public String toString() {
 		return "+";
 	}
 }
