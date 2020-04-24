@@ -68,7 +68,6 @@ public class Direction {
 		for(CardinalPoint cp : CardinalPoint.values()) {
 			Position p = Position.directionToPos(h.getPos(), cp);
 			currentDistance = Position.computeDistance(p, h.getTreasurePos());
-			System.out.println(cp + " : " + currentDistance + " : " + p);
 			
 			if(currentDistance < bestDistance) {
 				bestDistance = currentDistance;
