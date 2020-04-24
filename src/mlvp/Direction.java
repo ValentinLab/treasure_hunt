@@ -66,7 +66,9 @@ public class Direction {
 		
 		int currentDistance = 0;
 		for(CardinalPoint cp : CardinalPoint.values()) {
-			currentDistance = Position.computeDistance(Position.directionToPos(h.getPos(), cp), h.getTreasurePos());
+			Position p = Position.directionToPos(h.getPos(), cp);
+			currentDistance = Position.computeDistance(p, h.getTreasurePos());
+			//System.out.println(cp + " : " + currentDistance + " : " + p);
 			
 			if(currentDistance < bestDistance) {
 				bestDistance = currentDistance;
@@ -95,9 +97,9 @@ public class Direction {
 		int y = 0;
 
 		if(dir == CardinalPoint.NORTH_WEST || dir == CardinalPoint.NORTH || dir == CardinalPoint.NORTH_EAST) {
-			y = +1;
-		} else if(dir == CardinalPoint.SOUTH_WEST || dir == CardinalPoint.SOUTH || dir == CardinalPoint.SOUTH_EAST) {
 			y = -1;
+		} else if(dir == CardinalPoint.SOUTH_WEST || dir == CardinalPoint.SOUTH || dir == CardinalPoint.SOUTH_EAST) {
+			y = +1;
 		}
 
 		return y;

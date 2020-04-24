@@ -145,7 +145,6 @@ public class Board {
 		System.out.println(this.toString());
 
 		// Actions des trois joueurs
-		int playersNb = players.size();
 		for(Hunter h : players) {
 			// Case cible
 			Cell target = getDestCell(h);
