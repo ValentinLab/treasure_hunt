@@ -92,6 +92,7 @@ public class Board {
 					x += 1;
 					break;
 				case 'T':
+					treasureP = new Position(x, y);
 					allCells[x][y] = new Treasure(x-1, y-1);
 					x += 1;
 					break;

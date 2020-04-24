@@ -38,8 +38,8 @@ public class Free extends Cell {
 
 		if(player ==  null) {
 			player = h;
-			player.getDir().setNear(h);
 			player.setPos(pos);
+			player.getDir().setNear(h);
 			System.out.println("Meilleure direction");
 		} else {
 			player.getDir().setRandom();
