@@ -15,6 +15,7 @@ public class Treasure extends Cell {
 	
 	public void process(Hunter h) {
 		h.setPos(pos);
+		System.out.println("C'est gagné !");
 	}
 
 	public String toString() {

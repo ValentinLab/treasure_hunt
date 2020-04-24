@@ -15,6 +15,7 @@ public class Side extends Cell {
 	
 	public void process(Hunter h) {
 		h.getDir().setOpposite();
+		System.out.println("Bord du jeu...");
 	}
 	
 	public String toString() {

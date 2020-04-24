@@ -1,6 +1,7 @@
 package mlvp;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Board {
 
@@ -32,6 +33,14 @@ public class Board {
 	
 	public Cell getCell(Hunter h) {
 		return getCell(h.getPos());
+	}
+
+	public Cell getDestCell(Hunter h) {
+		int x = h.getDir().dirToX();
+		int y = h.getDir().dirToY();
+		Position destPos = new Position(h.getPos().getPosX() + x + 1, h.getPos().getPosY() + y + 1);
+
+		return getCell(destPos);
 	}
 	
 	// ----- Fonctions -----
@@ -65,24 +74,25 @@ public class Board {
 
 		// Parsez le terrain
 		Cell[][] allCells = new Cell[selectedGroundSize][selectedGroundSize];
+		Position treasureP = new Position(0, 0);
 		int x = 0, y = 0;
 		int selectedGroundLength = selectedGround.length();
 		for(int i = 0; i < selectedGroundLength; ++i) {
 			switch(selectedGround.charAt(i)) {
 				case '+':
-					allCells[y][x] = new Side(x, y);
+					allCells[x][y] = new Side(x-1, y-1);
 					x += 1;
 					break;
 				case '.':
-					allCells[y][x] = new Free(x, y);
+					allCells[x][y] = new Free(x-1, y-1);
 					x += 1;
 					break;
 				case '#':
-					allCells[y][x] = new Stone(x, y);
+					allCells[x][y] = new Stone(x-1, y-1);
 					x += 1;
 					break;
 				case 'T':
-					allCells[y][x] = new Treasure(x, y);
+					allCells[x][y] = new Treasure(x-1, y-1);
 					x += 1;
 					break;
 				case '\n':
@@ -90,13 +100,20 @@ public class Board {
 					y += 1;
 					break;
 				default:
-					Hunter h = new Hunter(selectedGround.charAt(i), new Position(x + 1, y + 1));
+					Hunter h = new Hunter(selectedGround.charAt(i), new Position(x, y));
 					players.add(h);
-					allCells[y][x] = new Free(x, y);
-					allCells[y][x].process(h);
+					allCells[x][y] = new Free(x-1, y-1, h);
 					x += 1;
 					break;
 			}
+
+			// Ajouter la position du trésor aux joueurs
+			for(Hunter h : players) {
+				h.setTreasurePos(treasureP);
+			}
+
+			// Trier les joueurs par nom
+			Collections.sort(players);
 		}
 
 		// Ajout des colonnes
@@ -106,9 +123,25 @@ public class Board {
 	}
 	
 	public void playRound() {
-		int playersNb = players.size();
-		for(int i = 0; i < playersNb; ++i) {
+		// Affichage du board
+		System.out.println(this.toString());
 
+		// Actions des trois joueurs
+		int playersNb = players.size();
+		for(Hunter h : players) {
+			// Case cible
+			Cell target = getDestCell(h);
+
+			// Affichage des informations
+			System.out.println("Personnage " + h);
+			System.out.println("Hunter " + h.getPos() + " dir " + h.getDir());
+			System.out.println("Case cible : " + target.posToStr());
+
+			// Action sur la case
+			target.process(h);
+
+			// Nouvel affichage du joueur
+			System.out.println(" -> Hunter " + h.getPos() + " dir " + h.getDir() + "\n");
 		}
 	}
 	
@@ -117,8 +150,8 @@ public class Board {
 
 		int playersNuber = players.size();
 		int boardSize = cells.size();
-		for(int x = 0; x < boardSize; ++x) {
-			for(int y = 0; y < boardSize; ++y) {
+		for(int y = 0; y < boardSize; ++y) {
+			for(int x = 0; x < boardSize; ++x) {
 				board += getCell(x, y);
 			}
 			board += "\n";
@@ -126,5 +159,4 @@ public class Board {
 		
 		return board;
 	}
-	
 }

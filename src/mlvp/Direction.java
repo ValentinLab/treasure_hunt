@@ -15,7 +15,7 @@ public class Direction {
 		this(CardinalPoint.values()[(int)(Math.random() * 8)]);
 	}
 	
-	// -----  Fonctions -----
+	// -----  Setters -----
 	
 	public void setOpposite() {
 		CardinalPoint newDir = CardinalPoint.NORTH;
@@ -75,5 +75,35 @@ public class Direction {
 		}
 		
 		dir = bestDir;
+	}
+
+	// ----- Fonctions -----
+
+	public int dirToX() {
+		int x = 0;
+
+		if(dir == CardinalPoint.NORTH_EAST || dir == CardinalPoint.EAST || dir == CardinalPoint.SOUTH_EAST) {
+			x = +1;
+		} else if(dir == CardinalPoint.NORTH_WEST || dir == CardinalPoint.WEST || dir == CardinalPoint.SOUTH_WEST) {
+			x = -1;
+		}
+
+		return x;
+	}
+
+	public int dirToY() {
+		int y = 0;
+
+		if(dir == CardinalPoint.NORTH_WEST || dir == CardinalPoint.NORTH || dir == CardinalPoint.NORTH_EAST) {
+			y = +1;
+		} else if(dir == CardinalPoint.SOUTH_WEST || dir == CardinalPoint.SOUTH || dir == CardinalPoint.SOUTH_EAST) {
+			y = -1;
+		}
+
+		return y;
+	}
+
+	public String toString() {
+		return "" + dir;
 	}
 }

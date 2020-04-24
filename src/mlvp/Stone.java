@@ -15,6 +15,7 @@ public class Stone extends Cell {
 	
 	public void process(Hunter h) {
 		h.getDir().setNear(h);
+		System.out.println("C'était un mur ...");
 	}
 
 	public String toString() {

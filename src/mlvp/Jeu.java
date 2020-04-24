@@ -5,7 +5,7 @@ public class Jeu {
 		// Création du plateau de jeu
 		Board b = new Board(3);
 		
-		// Affichage du plateau de jeu
-		System.out.println(b);
+		// Tour de jeu
+		b.playRound();
 	}
 }

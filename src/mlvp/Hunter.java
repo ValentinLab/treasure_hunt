@@ -1,6 +1,6 @@
 package mlvp;
 
-public class Hunter {
+public class Hunter implements Comparable<Hunter> {
 	// ----- Attributs -----
 	
 	private char name;
@@ -46,6 +46,10 @@ public class Hunter {
 	}
 	
 	// ----- Fonctions -----
+
+	public int compareTo(Hunter that) {
+		return this.name - that.name;
+	}
 	
 	public String toString() {
 		return String.valueOf(name);

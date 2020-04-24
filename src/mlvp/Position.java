@@ -3,8 +3,8 @@ package mlvp;
 public class Position {
 	// ----- Attributs -----
 	
-	int posX;
-	int posY;
+	private int posX;
+	private int posY;
 	
 	// ----- Constructeur -----
 	
@@ -46,5 +46,9 @@ public class Position {
 		}
 		
 		return new Position(x, y);
+	}
+
+	public String toString() {
+		return "[" + posX + " " + posY + "]";
 	}
 }
