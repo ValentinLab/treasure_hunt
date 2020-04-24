@@ -121,7 +121,25 @@ public class Board {
 			cells.add(new Column(allCells[i]));
 		}
 	}
-	
+
+	public void playGame() {
+		boolean isPlaying = true;
+
+		// Boucle de jeu
+		do {
+			// Tours de jeu
+			playRound();
+
+			// Vérifier si un joueur a gagné
+			for(Hunter h : players) {
+				if(h.getPos() == h.getTreasurePos()) {
+					isPlaying = false;
+					break;
+				}
+			}
+		} while(isPlaying);
+	}
+
 	public void playRound() {
 		// Affichage du board
 		System.out.println(this.toString());

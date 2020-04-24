@@ -48,6 +48,10 @@ public class Position {
 		return new Position(x, y);
 	}
 
+	public boolean equals(Position that) {
+		return this.posX == that.posX && this.posY == that.posY;
+	}
+
 	public String toString() {
 		return "[" + posX + " " + posY + "]";
 	}

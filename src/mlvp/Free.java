@@ -24,8 +24,18 @@ public class Free extends Cell {
 	}
 	
     // ----- Fonctions -----
+
+	private void removePlayer() {
+		if(player != null) {
+			if(!player.getPos().equals(pos)) {
+				player = null;
+			}
+		}
+	}
 	
 	public void process(Hunter h) {
+		removePlayer();
+
 		if(player ==  null) {
 			player = h;
 			player.getDir().setNear(h);
@@ -38,6 +48,8 @@ public class Free extends Cell {
 	}
 	
 	public String toString() {
+		removePlayer();
+
 		if(player == null) {
 			return ".";
 		}
