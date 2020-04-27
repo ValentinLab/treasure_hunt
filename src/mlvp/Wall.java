@@ -9,17 +9,31 @@ public class Wall {
 
     // ----- Constructeur -----
 
-    public Wall(boolean iH, Position f, Position t) {
-        isHrizontal = iH;
+    public Wall(Position f, Position t) {
+        isHrizontal = f.getPosY() == t.getPosY();
         from = f;
         to = t;
     }
 
+    // ----- Getters -----
+
+    public boolean getIsHorizontal() {
+        return isHrizontal;
+    }
+
+    public Position getFrom() {
+        return from;
+    }
+
+    public Position getTo() {
+        return to;
+    }
+
     // ----- Fonctions -----
 
-    public boolean isInside(Stone s) {
-        int sPosX = s.getPos().getPosX();
-        int sPosY = s.getPos().getPosY();
+    public boolean isInside(Position p) {
+        int sPosX = p.getPosX();
+        int sPosY = p.getPosY();
 
         boolean isGoodY, isGoodX;
         if(isHrizontal) {

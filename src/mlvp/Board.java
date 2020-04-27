@@ -30,10 +30,6 @@ public class Board {
 	public Cell getCell(int col, int row) {
 		return getCell(new Position(col + 1, row + 1));
 	}
-	
-	public Cell getCell(Hunter h) {
-		return getCell(h.getPos());
-	}
 
 	public Cell getDestCell(Hunter h) {
 		int x = h.getDir().dirToX();
@@ -63,14 +59,24 @@ public class Board {
 			"+............+\n" +
 			"++++++++++++++"
 		};
+		// Tableau de murs pour chaque terrain
+		Wall[][] groundsWalls = {
+			{
+				new Wall(new Position(4, 3), new Position(4, 9)),
+				new Wall(new Position(7, 7), new Position(9, 7))
+			}
+		};
 
 		// Choisir un terrain
-		String selectedGround = grounds[(int)(Math.random() * grounds.length)];
+		int indexGround = (int)(Math.random() * grounds.length);
+		String selectedGround = grounds[indexGround];
 		// Taille du terrain
 		int selectedGroundSize = 0;
 		while(selectedGround.charAt(selectedGroundSize) != '\n') {
 			++selectedGroundSize;
 		}
+		// Nombre de murs
+		int wallsNumber = groundsWalls[indexGround].length;
 
 		// Parsez le terrain
 		Cell[][] allCells = new Cell[selectedGroundSize][selectedGroundSize];
@@ -88,7 +94,14 @@ public class Board {
 					x += 1;
 					break;
 				case '#':
-					allCells[x][y] = new Stone(x-1, y-1);
+					Position stonePosition = new Position(x, y);
+					Wall currentW = null;
+					for(int k = 0; k < wallsNumber; ++k) {
+						if(groundsWalls[indexGround][k].isInside(stonePosition)) {
+							currentW = groundsWalls[indexGround][k];
+						}
+					}
+					allCells[x][y] = new Stone(stonePosition, currentW);
 					x += 1;
 					break;
 				case 'T':
@@ -133,7 +146,7 @@ public class Board {
 
 			// Vérifier si un joueur a gagné
 			for(Hunter h : players) {
-				if(h.getPos() == h.getTreasurePos()) {
+				if(h.getPos().equals(h.getTreasurePos())) {
 					isPlaying = false;
 					break;
 				}

@@ -50,7 +50,7 @@ public class Direction {
 	}
 	
 	public void setRandom() {
-		int index = (int)(Math.random() * 8 + 1);
+		int index = (int)(Math.random() * 8);
 		CardinalPoint newDir  = CardinalPoint.values()[index];
 		
 		if(newDir.equals(dir)) {
@@ -64,7 +64,7 @@ public class Direction {
 		CardinalPoint bestDir = CardinalPoint.NORTH;
 		int  bestDistance = Position.computeDistance(h.getPos(), h.getTreasurePos());
 		
-		int currentDistance = 0;
+		int currentDistance;
 		for(CardinalPoint cp : CardinalPoint.values()) {
 			Position p = Position.directionToPos(h.getPos(), cp);
 			currentDistance = Position.computeDistance(p, h.getTreasurePos());
@@ -76,6 +76,42 @@ public class Direction {
 		}
 		
 		dir = bestDir;
+	}
+
+	public void setNear(Hunter h, Wall w) {
+		// Calcul de la meilleure distance
+		setNear(h);
+
+		// Modifier la direction selon le mur
+		if(w.getIsHorizontal()) {
+			if(dir == CardinalPoint.NORTH_WEST || dir == CardinalPoint.SOUTH_WEST) {
+				dir = CardinalPoint.WEST;
+			} else if(dir == CardinalPoint.NORTH_EAST || dir == CardinalPoint.SOUTH_EAST) {
+				dir = CardinalPoint.EAST;
+			} else {
+				int distFrom = Position.computeDistance(h.getPos(), w.getFrom());
+				int distTo = Position.computeDistance(h.getPos(), w.getTo());
+				if(distFrom <= distTo) {
+					dir = CardinalPoint.WEST;
+				} else {
+					dir = CardinalPoint.EAST;
+				}
+			}
+		} else {
+			if(dir == CardinalPoint.NORTH_WEST || dir == CardinalPoint.NORTH_EAST) {
+				dir = CardinalPoint.NORTH;
+			} else if(dir == CardinalPoint.SOUTH_WEST || dir == CardinalPoint.SOUTH_EAST) {
+				dir = CardinalPoint.SOUTH;
+			} else {
+				int distFrom = Position.computeDistance(h.getPos(), w.getFrom());
+				int distTo = Position.computeDistance(h.getPos(), w.getTo());
+				if(distFrom <= distTo) {
+					dir = CardinalPoint.NORTH;
+				} else {
+					dir = CardinalPoint.SOUTH;
+				}
+			}
+		}
 	}
 
 	// ----- Fonctions -----
