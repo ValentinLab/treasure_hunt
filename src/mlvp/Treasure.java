@@ -1,12 +1,12 @@
+package mlvp;
+
 /**
  * Case du plateau de type trésor
  *
  * @author Medhi Louison et Valentin Perignon
  */
-package mlvp;
-
 public class Treasure extends Cell {
-	// ----- Constructeur -----
+	// ----- Constructeurs -----
 	
 	public Treasure(Position p) {
 		pos =  p;

@@ -1,16 +1,16 @@
+package mlvp;
+
 /**
  * Case du plateau de type libre
  *
  * @author Medhi Louison et Valentin Perignon
  */
-package mlvp;
-
 public class Free extends Cell {
-	// ----- Attributs -----
+	// ----- Attribut -----
 	
     Hunter player;
 
-    // ----- Constructeur -----
+    // ----- Constructeurs -----
 
 	public Free(Position p){
 		pos = p;

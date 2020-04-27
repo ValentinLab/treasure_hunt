@@ -1,10 +1,10 @@
+package mlvp;
+
 /**
  * Case du plateau de type côté
  *
  * @author Medhi Louison et Valentin Perignon
  */
-package mlvp;
-
 public class Side extends Cell {
 	// ----- Constructeur -----
 	

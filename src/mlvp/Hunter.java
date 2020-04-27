@@ -1,10 +1,10 @@
+package mlvp;
+
 /**
  * Joueur
  *
  * @author Medhi Louison et Valentin Perignon
  */
-package mlvp;
-
 public class Hunter implements Comparable<Hunter> {
 	// ----- Attributs -----
 	

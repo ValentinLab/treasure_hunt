@@ -6,7 +6,7 @@
 package mlvp;
 
 public class Direction {
-	// ----- Attributs -----
+	// ----- Attribut -----
 	
 	CardinalPoint dir;
 	

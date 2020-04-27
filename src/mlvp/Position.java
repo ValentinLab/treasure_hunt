@@ -1,10 +1,10 @@
+package mlvp;
+
 /**
  * Position d'un élément sur le plateau de jeu
  *
  * @author Medhi Louison et Valentin Perignon
  */
-package mlvp;
-
 public class Position {
 	// ----- Attributs -----
 	

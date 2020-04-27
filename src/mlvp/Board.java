@@ -1,13 +1,13 @@
-/**
- * Plateau de jeu
- *
- * @author Medhi Louison et Valentin Perignon
- */
 package mlvp;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Plateau de jeu
+ *
+ * @author Medhi Louison et Valentin Perignon
+ */
 public class Board {
 	// ----- Attributs -----
 	

@@ -1,12 +1,12 @@
+package mlvp;
+
 /**
  * Case du plateau
  *
  * @author Medhi Louison et Valentin Perignon
  */
-package mlvp;
-
 public abstract class Cell implements Questionnable {
-	// ----- Attributs -----
+	// ----- Attribut -----
 	
 	protected Position pos;
 

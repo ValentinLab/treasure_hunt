@@ -1,10 +1,10 @@
+package mlvp;
+
 /**
  * Case du plateau de type pierre
  *
  * @author Medhi Louison et Valentin Perignon
  */
-package mlvp;
-
 public class Stone extends Cell {
 	// ----- Attributs -----
 

@@ -1,8 +1,8 @@
+package mlvp;
+
 /**
  * Ensemble des directions possibles
  */
-package mlvp;
-
 public enum CardinalPoint {
 	EAST,
 	SOUTH_EAST,

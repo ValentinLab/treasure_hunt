@@ -1,10 +1,10 @@
+package mlvp;
+
 /**
  * Mur du plateau : ensemble de pierres
  *
  * @author Medhi Louison et Valentin Perignon
  */
-package mlvp;
-
 public class Wall {
     // ----- Attributs -----
 
@@ -34,7 +34,7 @@ public class Wall {
         return to;
     }
 
-    // ----- Fonctions -----
+    // ----- Fonction -----
 
     /**
      * Vérifier si une case du plateau appartient au mur (à partir de sa position)
