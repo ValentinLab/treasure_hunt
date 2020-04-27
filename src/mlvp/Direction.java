@@ -57,11 +57,13 @@ public class Direction {
 	 * Positionner la direction de manière aléatoire
 	 */
 	public void setRandom() {
-		int index = (int)(Math.random() * 8);
-		CardinalPoint newDir = dir;
+		CardinalPoint newDir;
 
+		int index;
 		do {
+			index = (int)(Math.random() * 8);
 			newDir  = CardinalPoint.values()[index];
+			System.out.println(newDir + " et " + dir);
 		} while(newDir.equals(dir));
 		
 		dir = newDir;
@@ -172,6 +174,6 @@ public class Direction {
 	 * @return Direction sous forme de chaîne
 	 */
 	public String toString() {
-		return "" + dir;
+		return String.valueOf(dir);
 	}
 }

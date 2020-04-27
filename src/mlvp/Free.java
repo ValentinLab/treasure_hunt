@@ -53,7 +53,7 @@ public class Free extends Cell {
 			player.getDir().setNear(h);
 			System.out.println("Meilleure direction");
 		} else {
-			player.getDir().setRandom();
+			h.getDir().setRandom();
 			System.out.println("Conflit de personnages");
 		}
 	}

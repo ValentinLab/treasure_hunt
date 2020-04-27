@@ -10,7 +10,7 @@ import java.util.Collections;
  */
 public class Board {
 	// ----- Attributs -----
-	
+
 	private ArrayList<Hunter> players;
 	private ArrayList<Column> cells;
 
@@ -24,17 +24,7 @@ public class Board {
 		// Initialisation du tableau de jeu
 		initBoard();
 	}
-	
-	// ----- Getters -----
-	
-	public Cell getCell(Position p) {
-		return cells.get(p.getX() - 1).getCell(p.getY() - 1);
-	}
 
-	public Cell getCell(int col, int row) {
-		return getCell(new Position(col + 1, row + 1));
-	}
-	
 	// ----- Fonctions -----
 
 	/**
@@ -137,17 +127,27 @@ public class Board {
 	}
 
 	/**
+	 * Obtenir une case du jeu
+	 *
+	 * @param col Colonne de la case
+	 * @param row Ligne de la case
+	 * @return Case du jeu
+	 */
+	private Cell getCell(int col, int row) {
+		return cells.get(col).getCell(row);
+	}
+
+	/**
 	 * Obtenir la case cible d'un joueur
 	 *
 	 * @param h Un joueur
 	 * @return La case cible du joueur
 	 */
-	public Cell getDestCell(Hunter h) {
+	private Cell getDestCell(Hunter h) {
 		int x = h.getDir().dirToX();
 		int y = h.getDir().dirToY();
-		Position destPos = new Position(h.getPos().getX() + x + 1, h.getPos().getY() + y + 1);
 
-		return getCell(destPos);
+		return getCell(h.getPos().getX() + x, h.getPos().getY() + y);
 	}
 
 	/**
@@ -190,6 +190,8 @@ public class Board {
 			// Vérifier si un joueur a gagné
 			for(Hunter h : players) {
 				if(h.getPos().equals(h.getTreasurePos())) {
+					System.out.println("Le jour " + h + " a gagné la partie !");
+
 					isPlaying = false;
 					break;
 				}
