@@ -1,12 +1,15 @@
+/**
+ * Ensemble des directions possibles
+ */
 package mlvp;
 
 public enum CardinalPoint {
-	NORTH,
-	NORTH_EAST,
 	EAST,
 	SOUTH_EAST,
 	SOUTH,
 	SOUTH_WEST,
 	WEST,
-	NORTH_WEST,	
+	NORTH_WEST,
+	NORTH,
+	NORTH_EAST
 }

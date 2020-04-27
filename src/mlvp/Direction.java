@@ -1,3 +1,8 @@
+/**
+ * Direction d'un joueur
+ *
+ * @author Medhi Louison et Valentin Perignon
+ */
 package mlvp;
 
 public class Direction {
@@ -11,8 +16,11 @@ public class Direction {
 		dir = CardinalPoint.values()[(int)(Math.random() * 8)];
 	}
 	
-	// -----  Setters -----
-	
+	// ----- Fonctions -----
+
+	/**
+	 * Positionner la direction à l'opposé
+	 */
 	public void setOpposite() {
 		CardinalPoint newDir = CardinalPoint.NORTH;
 		switch(dir) {
@@ -44,18 +52,26 @@ public class Direction {
 		
 		dir = newDir;
 	}
-	
+
+	/**
+	 * Positionner la direction de manière aléatoire
+	 */
 	public void setRandom() {
 		int index = (int)(Math.random() * 8);
-		CardinalPoint newDir  = CardinalPoint.values()[index];
-		
-		if(newDir.equals(dir)) {
-			newDir = CardinalPoint.values()[index];
-		}
+		CardinalPoint newDir = dir;
+
+		do {
+			newDir  = CardinalPoint.values()[index];
+		} while(newDir.equals(dir));
 		
 		dir = newDir;
 	}
-	
+
+	/**
+	 * Positionner la direction de manière à se rapprocher du trésor
+	 *
+	 * @param h Joueur
+	 */
 	public void setNear(Hunter h) {
 		CardinalPoint bestDir = CardinalPoint.NORTH;
 		int  bestDistance = Position.computeDistance(h.getPos(), h.getTreasurePos());
@@ -74,6 +90,12 @@ public class Direction {
 		dir = bestDir;
 	}
 
+	/**
+	 * Positionner la direction de manière à se rapprocher du trésor et éviter le mur
+	 *
+	 * @param h Joueur
+	 * @param w Mur que rencontre le joueur
+	 */
 	public void setNear(Hunter h, Wall w) {
 		// Calcul de la meilleure distance
 		setNear(h);
@@ -110,8 +132,11 @@ public class Direction {
 		}
 	}
 
-	// ----- Fonctions -----
-
+	/**
+	 * Transformer la direction en une valeur x apparternant à [-1, +1]
+	 *
+	 * @return Valeur x
+	 */
 	public int dirToX() {
 		int x = 0;
 
@@ -124,6 +149,11 @@ public class Direction {
 		return x;
 	}
 
+	/**
+	 * Transformer la direction en une valeur y apparternant à [-1, +1]
+	 *
+	 * @return Valeur y
+	 */
 	public int dirToY() {
 		int y = 0;
 
@@ -136,6 +166,11 @@ public class Direction {
 		return y;
 	}
 
+	/**
+	 * Transformer la direction en une chaîne de caractères
+	 *
+	 * @return Direction sous forme de chaîne
+	 */
 	public String toString() {
 		return "" + dir;
 	}

@@ -1,3 +1,8 @@
+/**
+ * Position d'un élément sur le plateau de jeu
+ *
+ * @author Medhi Louison et Valentin Perignon
+ */
 package mlvp;
 
 public class Position {
@@ -15,20 +20,34 @@ public class Position {
 	
 	// ----- Getters -----
 	
-	public int getPosX() {
+	public int getX() {
 		return posX;
 	}
 	
-	public int getPosY() {
+	public int getY() {
 		return posY;
 	}
 	
-	// ----- Fonctions static -----
-	
+	// ----- Fonctions statiques -----
+
+	/**
+	 * Calculer la distance entre deux points
+	 *
+	 * @param from Position de départ
+	 * @param to Position d'arrivée
+	 * @return Distance de from à to
+	 */
 	public static int computeDistance(Position from, Position to) {
 		return (int)Math.pow(to.posX - from.posX, 2) + (int)Math.pow(to.posY - from.posY, 2);
 	}
 
+	/**
+	 * Transformation d'une direction en une position
+	 *
+	 * @param currentPos Position actuelle
+	 * @param cp Direction
+	 * @return Position dans la direction cp de currentPos
+	 */
 	public static Position directionToPos(Position currentPos, CardinalPoint cp) {
 		int x = currentPos.posX;
 		int y = currentPos.posY;
@@ -50,10 +69,21 @@ public class Position {
 
 	// ----- Fonctions -----
 
+	/**
+	 * Vérifier si deux positions sont égales
+	 *
+	 * @param that Position à vérifier
+	 * @return Vrai si elles sont égales
+	 */
 	public boolean equals(Position that) {
 		return this.posX == that.posX && this.posY == that.posY;
 	}
 
+	/**
+	 * Transformer une position en une chaîne de caractères
+	 *
+	 * @return La position sous forme de chaîne
+	 */
 	public String toString() {
 		return "[" + posX + " " + posY + "]";
 	}

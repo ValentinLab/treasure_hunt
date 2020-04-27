@@ -1,3 +1,8 @@
+/**
+ * Mur du plateau : ensemble de pierres
+ *
+ * @author Medhi Louison et Valentin Perignon
+ */
 package mlvp;
 
 public class Wall {
@@ -10,7 +15,7 @@ public class Wall {
     // ----- Constructeur -----
 
     public Wall(Position f, Position t) {
-        isHrizontal = f.getPosY() == t.getPosY();
+        isHrizontal = f.getY() == t.getY();
         from = f;
         to = t;
     }
@@ -31,17 +36,23 @@ public class Wall {
 
     // ----- Fonctions -----
 
+    /**
+     * Vérifier si une case du plateau appartient au mur (à partir de sa position)
+     *
+     * @param p Position de la case à vérifier
+     * @return Vrai si la case est dans un mur
+     */
     public boolean isInside(Position p) {
-        int sPosX = p.getPosX();
-        int sPosY = p.getPosY();
+        int sPosX = p.getX();
+        int sPosY = p.getY();
 
         boolean isGoodY, isGoodX;
         if(isHrizontal) {
-            isGoodY = sPosY == from.getPosY();
-            isGoodX = sPosX >= from.getPosX() && sPosX <= to.getPosX();
+            isGoodY = sPosY == from.getY();
+            isGoodX = sPosX >= from.getX() && sPosX <= to.getX();
         } else {
-            isGoodY = sPosY >= from.getPosY() && sPosY <= to.getPosY();
-            isGoodX = sPosX == from.getPosX();
+            isGoodY = sPosY >= from.getY() && sPosY <= to.getY();
+            isGoodX = sPosX == from.getX();
         }
 
         return isGoodY && isGoodX;

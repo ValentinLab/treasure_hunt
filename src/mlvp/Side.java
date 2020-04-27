@@ -1,3 +1,8 @@
+/**
+ * Case du plateau de type côté
+ *
+ * @author Medhi Louison et Valentin Perignon
+ */
 package mlvp;
 
 public class Side extends Cell {
@@ -12,12 +17,22 @@ public class Side extends Cell {
 	}
 	
 	// ----- Fonctions -----
-	
+
+	/**
+	 * Interaction entre le joueur et la case
+	 *
+	 * @param h Le joueur qui arrive sur la case
+	 */
 	public void process(Hunter h) {
 		h.getDir().setOpposite();
 		System.out.println("Bord du jeu...");
 	}
-	
+
+	/**
+	 * Transformer la case en chaîne de caractères
+	 *
+	 * @return La case sous forme de chaîne
+	 */
 	public String toString() {
 		return "+";
 	}

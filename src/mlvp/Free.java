@@ -1,3 +1,8 @@
+/**
+ * Case du plateau de type libre
+ *
+ * @author Medhi Louison et Valentin Perignon
+ */
 package mlvp;
 
 public class Free extends Cell {
@@ -23,6 +28,9 @@ public class Free extends Cell {
 	
     // ----- Fonctions -----
 
+	/**
+	 * Supprimer le joueur de la case si sa position est différente
+	 */
 	private void removePlayer() {
 		if(player != null) {
 			if(!player.getPos().equals(pos)) {
@@ -30,7 +38,12 @@ public class Free extends Cell {
 			}
 		}
 	}
-	
+
+	/**
+	 * Interaction entre le joueur et la case
+	 *
+	 * @param h Le joueur qui arrive sur la case
+	 */
 	public void process(Hunter h) {
 		removePlayer();
 
@@ -44,7 +57,12 @@ public class Free extends Cell {
 			System.out.println("Conflit de personnages");
 		}
 	}
-	
+
+	/**
+	 * Transformer la case en chaîne de caractères
+	 *
+	 * @return La case sous forme de chaîne
+	 */
 	public String toString() {
 		removePlayer();
 

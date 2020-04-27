@@ -1,3 +1,8 @@
+/**
+ * Joueur
+ *
+ * @author Medhi Louison et Valentin Perignon
+ */
 package mlvp;
 
 public class Hunter implements Comparable<Hunter> {
@@ -31,7 +36,7 @@ public class Hunter implements Comparable<Hunter> {
 		return treasurePos;
 	}
 	
-	//  ----- Setter -----
+	//  ----- Setters -----
 	
 	public void setPos(Position p) {
 		pos = p;
@@ -43,10 +48,21 @@ public class Hunter implements Comparable<Hunter> {
 	
 	// ----- Fonctions -----
 
+	/**
+	 * Comparer deux joueurs entre eux
+	 *
+	 * @param that Joueur à comparer
+	 * @return Vrai si les joueurs sont égaux (i.e. même nom)
+	 */
 	public int compareTo(Hunter that) {
 		return this.name - that.name;
 	}
-	
+
+	/**
+	 * Transformer un joueur en une chaîne de caractères
+	 *
+	 * @return Joueur sous forme de chaîne
+	 */
 	public String toString() {
 		return String.valueOf(name);
 	}

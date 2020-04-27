@@ -1,10 +1,15 @@
+/**
+ * Colonne de cases du plateau de jeu
+ *
+ * @author Medhi Louison et Valentin Perignon
+ */
 package mlvp;
 
 import java.util.ArrayList;
 
 public class Column {
 
-	// ----- Attributs -----
+	// ----- Attribut -----
 	
 	private ArrayList<Cell> col;
 	
@@ -21,11 +26,7 @@ public class Column {
 		}
 	}
 
-	// ----- Getters -----
-
-	public int getSize() {
-		return col.size();
-	}
+	// ----- Getter -----
 
 	public Cell getCell(int row) {
 		return col.get(row);

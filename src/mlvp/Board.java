@@ -1,3 +1,8 @@
+/**
+ * Plateau de jeu
+ *
+ * @author Medhi Louison et Valentin Perignon
+ */
 package mlvp;
 
 import java.util.ArrayList;
@@ -23,23 +28,19 @@ public class Board {
 	// ----- Getters -----
 	
 	public Cell getCell(Position p) {
-		return cells.get(p.getPosX() - 1).getCell(p.getPosY() - 1);
+		return cells.get(p.getX() - 1).getCell(p.getY() - 1);
 	}
 
 	public Cell getCell(int col, int row) {
 		return getCell(new Position(col + 1, row + 1));
 	}
-
-	public Cell getDestCell(Hunter h) {
-		int x = h.getDir().dirToX();
-		int y = h.getDir().dirToY();
-		Position destPos = new Position(h.getPos().getPosX() + x + 1, h.getPos().getPosY() + y + 1);
-
-		return getCell(destPos);
-	}
 	
 	// ----- Fonctions -----
-	
+
+	/**
+	 * Initialiser le plateau
+	 * Permet de positionner les joueurs, les murs et le trésor
+	 */
 	private void initBoard() {
 		// Tableau de terrains
 		String grounds[] = {
@@ -135,6 +136,24 @@ public class Board {
 		}
 	}
 
+	/**
+	 * Obtenir la case cible d'un joueur
+	 *
+	 * @param h Un joueur
+	 * @return La case cible du joueur
+	 */
+	public Cell getDestCell(Hunter h) {
+		int x = h.getDir().dirToX();
+		int y = h.getDir().dirToY();
+		Position destPos = new Position(h.getPos().getX() + x + 1, h.getPos().getY() + y + 1);
+
+		return getCell(destPos);
+	}
+
+	/**
+	 * Jouer un tour de jeu
+	 * Chaque joueur peut jouer un tour de jeu et interagir avec sa case cible
+	 */
 	private void playRound() {
 		// Affichage du board
 		System.out.println(this.toString());
@@ -157,6 +176,9 @@ public class Board {
 		}
 	}
 
+	/**
+	 * Jouer une partie de jeu entière
+	 */
 	public void playGame() {
 		boolean isPlaying = true;
 
@@ -174,7 +196,12 @@ public class Board {
 			}
 		} while(isPlaying);
 	}
-	
+
+	/**
+	 * Obtenir le plateau sous forme de chaîne de caractères
+	 *
+	 * @return Le plateau
+	 */
 	public String toString() {
 		String board="";
 
