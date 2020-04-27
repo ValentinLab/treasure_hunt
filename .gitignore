@@ -5,6 +5,12 @@ bin/
 .project
 .classpath
 
+## Java output ##
+output.txt
+
+## JavaDoc ##
+doc/
+
 ## IDEA ##
 .idea
 *.iml
