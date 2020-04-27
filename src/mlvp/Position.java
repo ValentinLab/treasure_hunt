@@ -23,7 +23,7 @@ public class Position {
 		return posY;
 	}
 	
-	// ----- Fonctions -----
+	// ----- Fonctions static -----
 	
 	public static int computeDistance(Position from, Position to) {
 		return (int)Math.pow(to.posX - from.posX, 2) + (int)Math.pow(to.posY - from.posY, 2);
@@ -47,6 +47,8 @@ public class Position {
 
 		return new Position(x, y);
 	}
+
+	// ----- Fonctions -----
 
 	public boolean equals(Position that) {
 		return this.posX == that.posX && this.posY == that.posY;

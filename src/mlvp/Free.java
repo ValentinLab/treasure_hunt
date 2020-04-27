@@ -1,7 +1,5 @@
 package mlvp;
 
-import javafx.geometry.Pos;
-
 public class Free extends Cell {
 	// ----- Attributs -----
 	

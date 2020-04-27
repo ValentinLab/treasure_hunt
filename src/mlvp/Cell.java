@@ -5,12 +5,6 @@ public abstract class Cell implements Questionnable {
 	
 	protected Position pos;
 
-	// ----- Getter -----
-
-	public Position getPos() {
-		return pos;
-	}
-	
 	//  ----- Fonctions -----
 
 	public String posToStr() {

@@ -7,12 +7,8 @@ public class Direction {
 	
 	// ----- Constructeur -----
 	
-	public Direction(CardinalPoint cp) {
-		dir = cp;
-	}
-	
 	public Direction() {
-		this(CardinalPoint.values()[(int)(Math.random() * 8)]);
+		dir = CardinalPoint.values()[(int)(Math.random() * 8)];
 	}
 	
 	// -----  Setters -----

@@ -10,15 +10,11 @@ public class Hunter implements Comparable<Hunter> {
 	
 	// ----- Constructeur -----
 	
-	public Hunter(char n, Position p, Position treasure) {
+	public Hunter(char n, Position p) {
 		dir = new Direction();
 		name = n;
 		pos = p;
-		treasurePos = treasure;
-	}
-	
-	public Hunter(char n, Position p) {
-		this(n, p, new Position(1, 1));
+		treasurePos = null;
 	}
 	
 	// ----- Getters -----

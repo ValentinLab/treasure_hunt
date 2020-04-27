@@ -12,10 +12,6 @@ public class Stone extends Cell {
 		wall = w;
 	}
 
-	public Stone(int x, int y, Wall w) {
-		this(new Position(x + 1, y +1), w);
-	}
-
 	// ----- Functions -----
 	
 	public void process(Hunter h) {

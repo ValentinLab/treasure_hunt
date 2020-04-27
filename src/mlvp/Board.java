@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Board {
-
 	// ----- Attributs -----
 	
 	private ArrayList<Hunter> players;
@@ -12,7 +11,7 @@ public class Board {
 
 	// ----- Constructeur -----
 	
-	Board(int playersNumber){
+	Board(){
 		// Initialisation des éléments
 		players = new ArrayList<Hunter>();
 		cells = new ArrayList<Column>();
@@ -136,25 +135,7 @@ public class Board {
 		}
 	}
 
-	public void playGame() {
-		boolean isPlaying = true;
-
-		// Boucle de jeu
-		do {
-			// Tours de jeu
-			playRound();
-
-			// Vérifier si un joueur a gagné
-			for(Hunter h : players) {
-				if(h.getPos().equals(h.getTreasurePos())) {
-					isPlaying = false;
-					break;
-				}
-			}
-		} while(isPlaying);
-	}
-
-	public void playRound() {
+	private void playRound() {
 		// Affichage du board
 		System.out.println(this.toString());
 
@@ -174,6 +155,24 @@ public class Board {
 			// Nouvel affichage du joueur
 			System.out.println(" -> Hunter " + h.getPos() + " dir " + h.getDir() + "\n");
 		}
+	}
+
+	public void playGame() {
+		boolean isPlaying = true;
+
+		// Boucle de jeu
+		do {
+			// Tours de jeu
+			playRound();
+
+			// Vérifier si un joueur a gagné
+			for(Hunter h : players) {
+				if(h.getPos().equals(h.getTreasurePos())) {
+					isPlaying = false;
+					break;
+				}
+			}
+		} while(isPlaying);
 	}
 	
 	public String toString() {
