@@ -160,6 +160,6 @@ public class Direction {
 	 * @return Direction sous forme de chaîne
 	 */
 	public String toString() {
-		return String.valueOf(dir);
+		return String.valueOf(dir.ordinal() + 1);
 	}
 }

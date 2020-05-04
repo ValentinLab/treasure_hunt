@@ -1,5 +1,7 @@
 package mlvp;
 
+import sun.applet.Main;
+
 /**
  * Classe principale
  *
@@ -7,12 +9,7 @@ package mlvp;
  */
 public class Game {
 	public static void main(String args[]) {
-		// Création du plateau de jeu
-		Board b = new Board();
-		// Lancement du jeu
-		b.playGame();
-
-		// Fenêtre
-		MainFrame mf = new MainFrame();
+		// Lancement de la fenêtre
+		MainFrame f = new MainFrame();
 	}
 }

@@ -8,13 +8,16 @@ public class MainFrame extends JFrame {
 
     JButton nextTurnBtn;
 
+    JPanel gridPanel;
+    JPanel aboutPanel;
+
     // ----- Constructeur -----
 
     public MainFrame() {
         // Création de la fenêtre
         super("Chasse au trésor");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(500, 700);
+        setSize(500, 600);
 
         // Container de la fenêtre
         Container c = getContentPane();
@@ -26,25 +29,32 @@ public class MainFrame extends JFrame {
         nextTurnPanel.add(nextTurnBtn);
 
         // --- Panel "Grille" ---
-        JPanel gridPanel = new JPanel(new GridLayout(12, 12));
-        for(int i = 0; i < 12; ++i) {
-            for(int j = 0; j < 12; ++j) {
-                gridPanel.add(new JLabel(i + "." + j));
-            }
-        }
+        gridPanel = new JPanel();
+
 
         // --- Panel "Informations sur les joueurs" ---
-        JPanel aboutPanel = new JPanel(new GridLayout(3,1));
-        for(int i = 0; i < 3; ++i) {
-            aboutPanel.add(new JLabel("coucou"));
-        }
+        aboutPanel = new JPanel();
 
         // Ajout des panels
         c.add(nextTurnPanel, BorderLayout.NORTH);
         c.add(gridPanel, BorderLayout.CENTER);
         c.add(aboutPanel, BorderLayout.SOUTH);
 
+        // Contrôleur de la fenêtre
+        Controller contr = new Controller(this);
+        nextTurnBtn.addActionListener(contr);
+
         // Affichage
         setVisible(true);
+    }
+
+    // ----- Getters -----
+
+    public JPanel getGridPanel() {
+        return gridPanel;
+    }
+
+    public JPanel getAboutPanel() {
+        return aboutPanel;
     }
 }

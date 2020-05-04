@@ -16,13 +16,38 @@ public class Board {
 
 	// ----- Constructeur -----
 	
-	Board(){
+	Board() {
 		// Initialisation des éléments
 		players = new ArrayList<Hunter>();
 		cells = new ArrayList<Column>();
 
 		// Initialisation du tableau de jeu
 		initBoard();
+	}
+
+	// ----- Getters -----
+
+	public int getSize() {
+		return cells.size();
+	}
+
+	public int getPlayersNumber() {
+		return players.size();
+	}
+
+	public Hunter getPlayer(int i) {
+		return players.get(i);
+	}
+
+	/**
+	 * Obtenir une case du jeu
+	 *
+	 * @param col Colonne de la case
+	 * @param row Ligne de la case
+	 * @return Case du jeu
+	 */
+	public Cell getCell(int col, int row) {
+		return cells.get(col).getCell(row);
 	}
 
 	// ----- Fonctions -----
@@ -142,17 +167,6 @@ public class Board {
 		for(int i = 0; i < selectedGroundSize; ++i) {
 			cells.add(new Column(allCells[i]));
 		}
-	}
-
-	/**
-	 * Obtenir une case du jeu
-	 *
-	 * @param col Colonne de la case
-	 * @param row Ligne de la case
-	 * @return Case du jeu
-	 */
-	private Cell getCell(int col, int row) {
-		return cells.get(col).getCell(row);
 	}
 
 	/**
