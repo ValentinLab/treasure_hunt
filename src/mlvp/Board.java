@@ -47,13 +47,31 @@ public class Board {
 			"+............+\n" +
 			"+............+\n" +
 			"+............+\n" +
-			"++++++++++++++"
+			"++++++++++++++",
+
+			"++++++++++++\n" +
+			"+..........+\n" +
+			"+....T.....+\n" +
+			"+...####...+\n" +
+			"+..........+\n" +
+			"+....####..+\n" +
+			"+.....B....+\n" +
+			"+..####....+\n" +
+			"+....A.....+\n" +
+			"+..........+\n" +
+			"+..........+\n" +
+			"++++++++++++"
 		};
 		// Tableau de murs pour chaque terrain
 		Wall[][] groundsWalls = {
 			{
 				new Wall(new Position(4, 3), new Position(4, 9)),
 				new Wall(new Position(7, 7), new Position(9, 7))
+			},
+			{
+				new Wall(new Position(4,3), new Position(7, 3)),
+				new Wall(new Position(5, 5), new Position(8, 5)),
+				new Wall(new Position(3, 7), new Position(6, 7))
 			}
 		};
 
