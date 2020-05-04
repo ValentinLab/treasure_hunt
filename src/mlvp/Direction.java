@@ -103,33 +103,19 @@ public class Direction {
 		setNear(h);
 
 		// Modifier la direction selon le mur
+		int distFrom = Position.computeDistance(h.getPos(), w.getFrom());
+		int distTo = Position.computeDistance(h.getPos(), w.getTo());
 		if(w.getIsHorizontal()) {
-			if(dir == CardinalPoint.NORTH_WEST || dir == CardinalPoint.SOUTH_WEST) {
+			if(distFrom <= distTo) {
 				dir = CardinalPoint.WEST;
-			} else if(dir == CardinalPoint.NORTH_EAST || dir == CardinalPoint.SOUTH_EAST) {
-				dir = CardinalPoint.EAST;
 			} else {
-				int distFrom = Position.computeDistance(h.getPos(), w.getFrom());
-				int distTo = Position.computeDistance(h.getPos(), w.getTo());
-				if(distFrom <= distTo) {
-					dir = CardinalPoint.WEST;
-				} else {
-					dir = CardinalPoint.EAST;
-				}
+				dir = CardinalPoint.EAST;
 			}
 		} else {
-			if(dir == CardinalPoint.NORTH_WEST || dir == CardinalPoint.NORTH_EAST) {
+			if(distFrom <= distTo) {
 				dir = CardinalPoint.NORTH;
-			} else if(dir == CardinalPoint.SOUTH_WEST || dir == CardinalPoint.SOUTH_EAST) {
-				dir = CardinalPoint.SOUTH;
 			} else {
-				int distFrom = Position.computeDistance(h.getPos(), w.getFrom());
-				int distTo = Position.computeDistance(h.getPos(), w.getTo());
-				if(distFrom <= distTo) {
-					dir = CardinalPoint.NORTH;
-				} else {
-					dir = CardinalPoint.SOUTH;
-				}
+				dir = CardinalPoint.SOUTH;
 			}
 		}
 	}
