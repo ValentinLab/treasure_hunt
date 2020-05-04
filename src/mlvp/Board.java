@@ -16,7 +16,7 @@ public class Board {
 
 	// ----- Constructeur -----
 	
-	Board(){
+	Board() {
 		// Initialisation des éléments
 		players = new ArrayList<Hunter>();
 		cells = new ArrayList<Column>();
