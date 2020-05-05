@@ -5,7 +5,6 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collections;
 
 public class Controller implements ActionListener {
     // ----- Attributs -----
@@ -28,40 +27,18 @@ public class Controller implements ActionListener {
         // Source de l'action
         Object source = e.getSource();
 
-        System.out.println("Src : " + source);
+        // Nouveau tour de jeu
+        if(source == mf.getNextTurnBtn()) {
+            board.playRound();
+            drawGrid();
+        }
     }
 
     public void initFrame() {
         // Affichage initial de la grille
         int boardSize = board.getSize();
-        mf.getGridPanel().setLayout(new GridLayout(boardSize, boardSize));
-        for(int i = 0; i < boardSize; ++i) {
-            for(int j = 0; j < boardSize; ++j) {
-                String cellData = board.getCell(j, i).toString();
-                JLabel cellLabel = new JLabel(cellData, SwingConstants.CENTER);
-                switch(cellData) {
-                    case ".":
-                        cellLabel.setBackground(Color.GRAY);
-                        break;
-                    case "#":
-                        cellLabel.setBackground(Color.BLUE);
-                        break;
-                    case "+":
-                        cellLabel.setBackground(Color.RED);
-                        break;
-                    case "T":
-                        cellLabel.setBackground(Color.YELLOW);
-                        break;
-                    default:
-                        cellLabel.setBackground(Color.GRAY);
-                        break;
-                }
-                cellLabel.setOpaque(true);
-                cellLabel.setBorder(new LineBorder(Color.BLACK));
-
-                mf.getGridPanel().add(cellLabel);
-            }
-        }
+        mf.initGrid(boardSize);
+        drawGrid();
 
         // Affichage initial des joueurs
         int playersNb = board.getPlayersNumber();
@@ -69,6 +46,44 @@ public class Controller implements ActionListener {
         for(int i = 0; i < playersNb; ++i) {
             Hunter player = board.getPlayer(i);
             mf.getAboutPanel().add(new JLabel("Personnage " + player.toString() + " " + player.getPos() + " dir " + player.getDir().toString()));
+        }
+    }
+
+    public void drawGrid() {
+        // Obtenir la taille de la grille
+        int boardSize = board.getSize();
+
+        // Afficher les éléments de la grille
+        String labelTxt;
+        Color labelColor;
+        for(int y = 0; y < boardSize; ++y) {
+            for(int x = 0; x < boardSize; ++x) {
+                if(board.getCell(x, y).toString().equals("#")) {
+                    labelTxt = "";
+                    labelColor = Color.BLUE;
+                } else if(board.getCell(x, y).toString().equals("+")) {
+                    if(x == 0 || x == boardSize-1) {
+                        labelTxt = (y > 0 && y < boardSize-1) ? String.valueOf(y) : "";
+                    } else if(y == 0 || y == boardSize-1) {
+                        labelTxt = (x > 0 && x < boardSize-1) ? String.valueOf(x) : "";
+                    } else {
+                        labelTxt = "";
+                    }
+                    labelColor = Color.RED;
+                } else if(board.getCell(x, y).toString().equals("T")) {
+                    labelTxt = "";
+                    labelColor = Color.YELLOW;
+                } else if(board.getCell(x, y).toString().equals(".")) {
+                    labelTxt = "";
+                    labelColor = Color.LIGHT_GRAY;
+                } else {
+                    labelTxt = board.getCell(x, y).toString();
+                    labelColor = Color.LIGHT_GRAY;
+                }
+
+                mf.getGridLabel(x, y).setText(labelTxt);
+                mf.getGridLabel(x, y).setBackground(labelColor);
+            }
         }
     }
 }

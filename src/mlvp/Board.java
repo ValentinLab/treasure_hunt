@@ -186,7 +186,7 @@ public class Board {
 	 * Jouer un tour de jeu
 	 * Chaque joueur peut jouer un tour de jeu et interagir avec sa case cible
 	 */
-	private void playRound() {
+	public void playRound() {
 		// Affichage du board
 		System.out.println(this.toString());
 
@@ -239,7 +239,6 @@ public class Board {
 	public String toString() {
 		String board="";
 
-		int playersNuber = players.size();
 		int boardSize = cells.size();
 		for(int y = 0; y < boardSize; ++y) {
 			for(int x = 0; x < boardSize; ++x) {
