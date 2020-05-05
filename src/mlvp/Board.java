@@ -209,26 +209,18 @@ public class Board {
 	}
 
 	/**
-	 * Jouer une partie de jeu entière
+	 * Vérifier si un joueur a gagné
 	 */
-	public void playGame() {
-		boolean isPlaying = true;
-
-		// Boucle de jeu
-		do {
-			// Tours de jeu
-			playRound();
-
-			// Vérifier si un joueur a gagné
-			for(Hunter h : players) {
-				if(h.getPos().equals(h.getTreasurePos())) {
-					System.out.println("Le jour " + h + " a gagné la partie !");
-
-					isPlaying = false;
-					break;
-				}
+	public Hunter checkVictory() {
+		Hunter winner = null;
+		for(Hunter h : players) {
+			if(h.getPos().equals(h.getTreasurePos())) {
+				winner = h;
+				break;
 			}
-		} while(isPlaying);
+		}
+
+		return winner;
 	}
 
 	/**

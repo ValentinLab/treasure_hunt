@@ -79,4 +79,10 @@ public class MainFrame extends JFrame {
             }
         }
     }
+
+    public void printWinnerBox(String playerName) {
+        JOptionPane.showMessageDialog(this,
+            "Le joueur " + playerName + " a gagné !", "Victoire !",
+            JOptionPane.INFORMATION_MESSAGE);
+    }
 }

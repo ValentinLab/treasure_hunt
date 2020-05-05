@@ -1,7 +1,6 @@
 package mlvp;
 
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,8 +28,16 @@ public class Controller implements ActionListener {
 
         // Nouveau tour de jeu
         if(source == mf.getNextTurnBtn()) {
+            // Jouer un nouveau tour
             board.playRound();
             drawGrid();
+
+            // Vérifier si un joueur a gagné
+            Hunter winner = board.checkVictory();
+            if(winner != null) {
+                mf.getNextTurnBtn().setEnabled(false);
+                mf.printWinnerBox(winner.toString());
+            }
         }
     }
 
