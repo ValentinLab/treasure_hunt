@@ -6,10 +6,15 @@ package mlvp;
  * @author Medhi Louison et Valentin Perignon
  */
 public class Treasure extends Cell {
+	// ----- Attributs -----
+
+	boolean taken;
+
 	// ----- Constructeurs -----
 	
 	public Treasure(Position p) {
 		pos =  p;
+		taken = false;
 	}
 
 	public Treasure(int x, int y) {
@@ -25,6 +30,11 @@ public class Treasure extends Cell {
 	 */
 	public String process(Hunter h) {
 		h.setPos(pos);
+		if(taken) {
+			return "**ex-aequo**";
+		}
+		
+		taken = true;
 		return "**gagné**";
 	}
 

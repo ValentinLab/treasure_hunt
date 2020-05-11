@@ -118,6 +118,9 @@ public class MainFrame extends JFrame {
             JOptionPane.YES_NO_OPTION);
     }
 
+    /**
+     * Nettoyer l'affichage lors d'une nouvelle partie
+     */
     public void cleanFrame() {
         gridPanel.removeAll();
         aboutPanel.removeAll();
