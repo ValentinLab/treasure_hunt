@@ -216,8 +216,6 @@ public class Board {
 	 * Chaque joueur peut jouer un tour de jeu et interagir avec sa case cible
 	 */
 	public void playRound(String[] movements) {
-		// Affichage du board
-		System.out.println(this.toString());
 
 		// Actions des trois joueurs
 		int index = 0;
