@@ -112,8 +112,8 @@ public class MainFrame extends JFrame {
      * @param playerName Nom du joueur gagnant
      */
     public void printWinnerBox(String playerName) {
-        JOptionPane.showMessageDialog(this,
-            "Le joueur " + playerName + " a gagné !", "Victoire !",
-            JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showConfirmDialog(this,
+            "Le joueur " + playerName + " a gagné ! \n Voulez vous recommencer une partie ?", "Victoire !",
+            JOptionPane.YES_NO_OPTION);
     }
 }
