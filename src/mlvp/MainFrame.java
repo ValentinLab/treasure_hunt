@@ -86,6 +86,7 @@ public class MainFrame extends JFrame {
                 gridLabels[x][y] = new JLabel(".", SwingConstants.CENTER);
                 gridLabels[x][y].setOpaque(true);
                 gridLabels[x][y].setBorder(new LineBorder(Color.BLACK));
+
                 gridPanel.add(gridLabels[x][y]);
             }
         }
@@ -97,9 +98,9 @@ public class MainFrame extends JFrame {
      * @param size Nombre de joueurs
      */
     public void initPlayersDatas(int size) {
-        aboutLabels = new JLabel[size];
         aboutPanel.setLayout(new GridLayout(size, 1));
 
+        aboutLabels = new JLabel[size];
         for(int i = 0; i < size; ++i) {
             aboutLabels[i] = new JLabel();
             aboutPanel.add(aboutLabels[i]);
@@ -111,9 +112,16 @@ public class MainFrame extends JFrame {
      *
      * @param playerName Nom du joueur gagnant
      */
-    public void printWinnerBox(String playerName) {
-        JOptionPane.showConfirmDialog(this,
+    public int printWinnerBox(String playerName) {
+        return JOptionPane.showConfirmDialog(this,
             "Le joueur " + playerName + " a gagné ! \n Voulez vous recommencer une partie ?", "Victoire !",
             JOptionPane.YES_NO_OPTION);
+    }
+
+    public void cleanFrame() {
+        gridPanel.removeAll();
+        aboutPanel.removeAll();
+
+        setVisible(true);
     }
 }

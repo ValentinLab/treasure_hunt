@@ -54,7 +54,14 @@ public class Controller implements ActionListener {
             if(winner != null) {
                 mf.getGridLabel(winner.getPos().getX(), winner.getPos().getY()).setText(winner.toString());
                 mf.getNextTurnBtn().setEnabled(false);
-                mf.printWinnerBox(winner.toString());
+                int playerDecision = mf.printWinnerBox(winner.toString());
+                if(playerDecision == JOptionPane.YES_OPTION) {
+                    board = new Board();
+
+                    mf.cleanFrame();
+                    initFrame();
+                    mf.getNextTurnBtn().setEnabled(true);
+                }
             }
         }
     }

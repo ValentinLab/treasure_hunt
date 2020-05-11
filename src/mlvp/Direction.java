@@ -63,7 +63,6 @@ public class Direction {
 		do {
 			index = (int)(Math.random() * 8);
 			newDir  = CardinalPoint.values()[index];
-			System.out.println(newDir + " et " + dir);
 		} while(newDir.equals(dir));
 		
 		dir = newDir;
