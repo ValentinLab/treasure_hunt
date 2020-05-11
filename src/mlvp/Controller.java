@@ -1,10 +1,14 @@
 package mlvp;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Contrôleur de l'interface graphique
+ *
+ * @author Medhi Louison et Valentin Perignon
+ */
 public class Controller implements ActionListener {
     // ----- Attributs -----
 
@@ -23,6 +27,11 @@ public class Controller implements ActionListener {
 
     // ----- Fonctions -----
 
+    /**
+     * Actions à réalisé lors d'un événement
+     *
+     * @param e Événement
+     */
     public void actionPerformed(ActionEvent e) {
         // Source de l'action
         Object source = e.getSource();
@@ -47,6 +56,9 @@ public class Controller implements ActionListener {
         }
     }
 
+    /**
+     * Initialiser l'interface graphique en fonction du terrain de jeu
+     */
     public void initFrame() {
         // Affichage initial de la grille
         int boardSize = board.getSize();
@@ -63,6 +75,9 @@ public class Controller implements ActionListener {
         }
     }
 
+    /**
+     * Dessiner la grille en fonction des caseselp
+     */
     public void drawGrid() {
         // Obtenir la taille de la grille
         int boardSize = board.getSize();

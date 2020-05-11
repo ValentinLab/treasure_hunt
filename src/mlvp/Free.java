@@ -55,7 +55,7 @@ public class Free extends Cell {
 		}
 
 		h.getDir().setRandom();
-		return "Confilt de personnages";
+		return "confilt de personnages";
 	}
 
 	/**

@@ -39,13 +39,6 @@ public class Board {
 		return players.get(i);
 	}
 
-	/**
-	 * Obtenir une case du jeu
-	 *
-	 * @param col Colonne de la case
-	 * @param row Ligne de la case
-	 * @return Case du jeu
-	 */
 	public Cell getCell(int col, int row) {
 		return cells.get(col).getCell(row);
 	}
