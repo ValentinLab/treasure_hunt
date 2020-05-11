@@ -99,23 +99,51 @@ public class Direction {
 	 * @param w Mur que rencontre le joueur
 	 */
 	public void setNear(Hunter h, Wall w) {
-		// Calcul de la meilleure distance
-		setNear(h);
-
-		// Modifier la direction selon le mur
-		int distFrom = Position.computeDistance(h.getPos(), w.getFrom());
-		int distTo = Position.computeDistance(h.getPos(), w.getTo());
+		int distFrom = Position.computeDistance(h.getPos(), w.getFrom()); // distance joueur <-> début du mur
+		int distTo = Position.computeDistance(h.getPos(), w.getTo()); // distance joueur <-> fin du mur
 		if(w.getIsHorizontal()) {
 			if(distFrom <= distTo) {
-				dir = CardinalPoint.WEST;
+				if(h.getPos().getX() == w.getFrom().getX()) {
+					if(h.getPos().getY() < w.getFrom().getY()) {
+						dir = CardinalPoint.SOUTH_WEST;
+					} else {
+						dir = CardinalPoint.NORTH_WEST;
+					}
+				} else {
+					dir = CardinalPoint.WEST;
+				}
 			} else {
-				dir = CardinalPoint.EAST;
+				if(h.getPos().getX() == w.getTo().getX()) {
+					if(h.getPos().getY() < w.getTo().getY()) {
+						dir = CardinalPoint.SOUTH_EAST;
+					} else {
+						dir = CardinalPoint.NORTH_EAST;
+					}
+				} else {
+					dir = CardinalPoint.EAST;
+				}
 			}
 		} else {
 			if(distFrom <= distTo) {
-				dir = CardinalPoint.NORTH;
+				if(h.getPos().getY() == w.getFrom().getY()) {
+					if(h.getPos().getX() < w.getFrom().getX()) {
+						dir = CardinalPoint.NORTH_EAST;
+					} else {
+						dir = CardinalPoint.NORTH_WEST;
+					}
+				} else {
+					dir = CardinalPoint.NORTH;
+				}
 			} else {
-				dir = CardinalPoint.SOUTH;
+				if(h.getPos().getY() == w.getTo().getY()) {
+					if(h.getPos().getX() < w.getTo().getX()) {
+						dir = CardinalPoint.SOUTH_EAST;
+					} else {
+						dir = CardinalPoint.SOUTH_WEST;
+					}
+				} else {
+					dir = CardinalPoint.SOUTH;
+				}
 			}
 		}
 	}
@@ -160,6 +188,6 @@ public class Direction {
 	 * @return Direction sous forme de chaîne
 	 */
 	public String toString() {
-		return String.valueOf(dir.ordinal()+1);
+		return String.valueOf(dir.ordinal() + 1);
 	}
 }

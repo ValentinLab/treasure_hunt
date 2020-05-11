@@ -25,6 +25,31 @@ public class Board {
 		initBoard();
 	}
 
+	// ----- Getters -----
+
+	public int getSize() {
+		return cells.size();
+	}
+
+	public int getPlayersNumber() {
+		return players.size();
+	}
+
+	public Hunter getPlayer(int i) {
+		return players.get(i);
+	}
+
+	/**
+	 * Obtenir une case du jeu
+	 *
+	 * @param col Colonne de la case
+	 * @param row Ligne de la case
+	 * @return Case du jeu
+	 */
+	public Cell getCell(int col, int row) {
+		return cells.get(col).getCell(row);
+	}
+
 	// ----- Fonctions -----
 
 	/**
@@ -145,17 +170,6 @@ public class Board {
 	}
 
 	/**
-	 * Obtenir une case du jeu
-	 *
-	 * @param col Colonne de la case
-	 * @param row Ligne de la case
-	 * @return Case du jeu
-	 */
-	private Cell getCell(int col, int row) {
-		return cells.get(col).getCell(row);
-	}
-
-	/**
 	 * Obtenir la case cible d'un joueur
 	 *
 	 * @param h Un joueur
@@ -172,7 +186,7 @@ public class Board {
 	 * Jouer un tour de jeu
 	 * Chaque joueur peut jouer un tour de jeu et interagir avec sa case cible
 	 */
-	private void playRound() {
+	public void playRound() {
 		// Affichage du board
 		System.out.println(this.toString());
 
@@ -195,26 +209,18 @@ public class Board {
 	}
 
 	/**
-	 * Jouer une partie de jeu entière
+	 * Vérifier si un joueur a gagné
 	 */
-	public void playGame() {
-		boolean isPlaying = true;
-
-		// Boucle de jeu
-		do {
-			// Tours de jeu
-			playRound();
-
-			// Vérifier si un joueur a gagné
-			for(Hunter h : players) {
-				if(h.getPos().equals(h.getTreasurePos())) {
-					System.out.println("Le jour " + h + " a gagné la partie !");
-
-					isPlaying = false;
-					break;
-				}
+	public Hunter checkVictory() {
+		Hunter winner = null;
+		for(Hunter h : players) {
+			if(h.getPos().equals(h.getTreasurePos())) {
+				winner = h;
+				break;
 			}
-		} while(isPlaying);
+		}
+
+		return winner;
 	}
 
 	/**
@@ -225,7 +231,6 @@ public class Board {
 	public String toString() {
 		String board="";
 
-		int playersNuber = players.size();
 		int boardSize = cells.size();
 		for(int y = 0; y < boardSize; ++y) {
 			for(int x = 0; x < boardSize; ++x) {

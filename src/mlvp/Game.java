@@ -1,15 +1,15 @@
 package mlvp;
 
+import sun.applet.Main;
+
 /**
  * Classe principale
  *
  * @author Medhi Louison et Valentin Perignon
  */
-public class Jeu {
+public class Game {
 	public static void main(String args[]) {
-		// Création du plateau de jeu
-		Board b = new Board();
-		// Lancement du jeu
-		b.playGame();
+		// Lancement de la fenêtre
+		MainFrame f = new MainFrame();
 	}
 }
