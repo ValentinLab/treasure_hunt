@@ -50,6 +50,7 @@ public class Controller implements ActionListener {
             // Vérifier si un joueur a gagné
             Hunter winner = board.checkVictory();
             if(winner != null) {
+                mf.getGridLabel(winner.getPos().getX(), winner.getPos().getY()).setText(winner.toString());
                 mf.getNextTurnBtn().setEnabled(false);
                 mf.printWinnerBox(winner.toString());
             }
@@ -76,7 +77,7 @@ public class Controller implements ActionListener {
     }
 
     /**
-     * Dessiner la grille en fonction des caseselp
+     * Dessiner la grille en fonction des cases
      */
     public void drawGrid() {
         // Obtenir la taille de la grille
