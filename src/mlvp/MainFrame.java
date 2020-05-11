@@ -13,6 +13,7 @@ public class MainFrame extends JFrame {
     JLabel[][] gridLabels;
 
     JPanel aboutPanel;
+    JLabel[] aboutLabels;
 
     // ----- Constructeur -----
 
@@ -60,8 +61,8 @@ public class MainFrame extends JFrame {
         return gridLabels[x][y];
     }
 
-    public JPanel getAboutPanel() {
-        return aboutPanel;
+    public JLabel getAboutLabel(int index) {
+        return aboutLabels[index];
     }
 
     // ----- Fonctions -----
@@ -77,6 +78,16 @@ public class MainFrame extends JFrame {
                 gridLabels[x][y].setBorder(new LineBorder(Color.BLACK));
                 gridPanel.add(gridLabels[x][y]);
             }
+        }
+    }
+
+    public void initPlayersDatas(int size) {
+        aboutLabels = new JLabel[size];
+        aboutPanel.setLayout(new GridLayout(size, 1));
+
+        for(int i = 0; i < size; ++i) {
+            aboutLabels[i] = new JLabel();
+            aboutPanel.add(aboutLabels[i]);
         }
     }
 

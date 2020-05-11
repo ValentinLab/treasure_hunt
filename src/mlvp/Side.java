@@ -23,9 +23,9 @@ public class Side extends Cell {
 	 *
 	 * @param h Le joueur qui arrive sur la case
 	 */
-	public void process(Hunter h) {
+	public String process(Hunter h) {
 		h.getDir().setOpposite();
-		System.out.println("Bord du jeu...");
+		return "bord du jeu";
 	}
 
 	/**

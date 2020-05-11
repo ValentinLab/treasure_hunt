@@ -26,7 +26,7 @@ public abstract class Cell implements Questionnable {
 	 *
 	 * @param h Le joueur qui arrive sur la case
 	 */
-	public abstract void process(Hunter h);
+	public abstract String process(Hunter h);
 
 	/**
 	 * Transformer la case en chaîne de caractères

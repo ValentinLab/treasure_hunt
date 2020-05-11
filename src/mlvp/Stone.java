@@ -24,9 +24,9 @@ public class Stone extends Cell {
 	 *
 	 * @param h Le joueur qui arrive sur la case
 	 */
-	public void process(Hunter h) {
+	public String process(Hunter h) {
 		h.getDir().setNear(h, wall);
-		System.out.println("C'était un mur ...");
+		return "un mur";
 	}
 
 	/**

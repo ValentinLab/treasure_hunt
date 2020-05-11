@@ -44,18 +44,18 @@ public class Free extends Cell {
 	 *
 	 * @param h Le joueur qui arrive sur la case
 	 */
-	public void process(Hunter h) {
+	public String process(Hunter h) {
 		removePlayer();
 
 		if(player ==  null) {
 			player = h;
 			player.setPos(pos);
 			player.getDir().setNear(h);
-			System.out.println("Meilleure direction");
-		} else {
-			h.getDir().setRandom();
-			System.out.println("Conflit de personnages");
+			return "meilleure direction";
 		}
+
+		h.getDir().setRandom();
+		return "Confilt de personnages";
 	}
 
 	/**
