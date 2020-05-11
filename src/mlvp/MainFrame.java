@@ -4,6 +4,11 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+/**
+ * Interface graphique principale du jeu
+ *
+ * @author Medhi Louison et Valentin Perignon
+ */
 public class MainFrame extends JFrame {
     // ----- Attributs -----
 
@@ -67,6 +72,11 @@ public class MainFrame extends JFrame {
 
     // ----- Fonctions -----
 
+    /**
+     * Initialier la grille de labels
+     *
+     * @param size Taille de la grille
+     */
     public void initGrid(int size) {
         gridPanel.setLayout(new GridLayout(size, size));
 
@@ -81,6 +91,11 @@ public class MainFrame extends JFrame {
         }
     }
 
+    /**
+     * Initialiser les labels contenant les informations sur les joueurs
+     *
+     * @param size Nombre de joueurs
+     */
     public void initPlayersDatas(int size) {
         aboutLabels = new JLabel[size];
         aboutPanel.setLayout(new GridLayout(size, 1));
@@ -91,6 +106,11 @@ public class MainFrame extends JFrame {
         }
     }
 
+    /**
+     * Afficher la boîte de dialogue de victoire
+     *
+     * @param playerName Nom du joueur gagnant
+     */
     public void printWinnerBox(String playerName) {
         JOptionPane.showMessageDialog(this,
             "Le joueur " + playerName + " a gagné !", "Victoire !",
