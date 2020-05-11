@@ -84,10 +84,10 @@ public class Board {
 			"+.........C+\n" +
 			"+..........+\n" +
 			"+...####...+\n" +
-			"+.....T#...+\n" +
-			"+......#...+\n" +
+			"+.....T....+\n" +
+			"+..........+\n" +
 			"+...####...+\n" +
-			"+..####....+\n" +
+			"+..........+\n" +
 			"+....A.....+\n" +
 			"+.......B..+\n" +
 			"+..........+\n" +
@@ -95,14 +95,14 @@ public class Board {
 
 			"++++++++++++\n" +
 			"+T########C+\n" +
-			"+....#.....+\n" +
-			"+....#.....+\n" +
-			"+....#.....+\n" +
+			"+..........+\n" +
+			"+..........+\n" +
+			"+..........+\n" +
 			"+....#####.+\n" +
-			"+.####.....+\n" +
+			"+..........+\n" +
 			"+.#........+\n" +
 			"+.#..A.....+\n" +
-			"+.####..B..+\n" +
+			"+.#.....B..+\n" +
 			"+..........+\n" +
 			"++++++++++++"
 		};
@@ -119,17 +119,12 @@ public class Board {
 			},
 			{
 				new Wall(new Position(4,3), new Position(7,3)),
-				new Wall(new Position(7,4),new Position(7,5)),
-				new Wall(new Position(4, 6), new Position(7, 6)),
-				new Wall(new Position(3, 7), new Position(6, 7))
+				new Wall(new Position(4, 6), new Position(7, 6))
 			},
 			{
 				new Wall(new Position(1,2), new Position(1,9)),
-				new Wall(new Position(5,2),new Position(5,4)),
 				new Wall(new Position(5, 5), new Position(9, 5)),
-				new Wall(new Position(2, 6), new Position(5, 6)),
-				new Wall(new Position(2, 7), new Position(2, 8)),
-				new Wall(new Position(2, 9), new Position(5, 9))
+				new Wall(new Position(2, 7), new Position(2, 9)),
 			}
 
 		};

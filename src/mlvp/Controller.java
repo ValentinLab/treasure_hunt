@@ -1,5 +1,6 @@
 package mlvp;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +25,7 @@ public class Controller implements ActionListener {
 
         initFrame();
     }
+
 
     // ----- Fonctions -----
 
@@ -56,6 +58,7 @@ public class Controller implements ActionListener {
             }
         }
     }
+
 
     /**
      * Initialiser l'interface graphique en fonction du terrain de jeu
