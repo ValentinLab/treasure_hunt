@@ -23,9 +23,9 @@ public class Treasure extends Cell {
 	 *
 	 * @param h Le joueur qui arrive sur la case
 	 */
-	public void process(Hunter h) {
+	public String process(Hunter h) {
 		h.setPos(pos);
-		System.out.println("Trésor découvert !");
+		return "**gagné**";
 	}
 
 	/**

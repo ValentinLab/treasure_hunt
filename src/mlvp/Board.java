@@ -186,25 +186,21 @@ public class Board {
 	 * Jouer un tour de jeu
 	 * Chaque joueur peut jouer un tour de jeu et interagir avec sa case cible
 	 */
-	public void playRound() {
+	public void playRound(String[] movements) {
 		// Affichage du board
 		System.out.println(this.toString());
 
 		// Actions des trois joueurs
+		int index = 0;
 		for(Hunter h : players) {
 			// Case cible
 			Cell target = getDestCell(h);
 
-			// Affichage des informations
-			System.out.println("Personnage " + h);
-			System.out.println("Hunter " + h.getPos() + " dir " + h.getDir());
-			System.out.println("Case cible : " + target.posToStr());
-
 			// Action sur la case
-			target.process(h);
-
-			// Nouvel affichage du joueur
-			System.out.println(" -> Hunter " + h.getPos() + " dir " + h.getDir() + "\n");
+			movements[index] = "Personnage " + h + " : ";
+			movements[index] += target.process(h);
+			movements[index] += " : " + h.getPos() + " dir " + h.getDir();
+			++index;
 		}
 	}
 

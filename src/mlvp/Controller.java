@@ -10,6 +10,7 @@ public class Controller implements ActionListener {
 
     Board board;
     MainFrame mf;
+    String[] movements;
 
     // ----- Constructeur -----
 
@@ -29,8 +30,13 @@ public class Controller implements ActionListener {
         // Nouveau tour de jeu
         if(source == mf.getNextTurnBtn()) {
             // Jouer un nouveau tour
-            board.playRound();
+            board.playRound(movements);
+
+            // Mettre à jour l'affichage
             drawGrid();
+            for(int i = 0; i < movements.length; ++i) {
+                mf.getAboutLabel(i).setText(movements[i]);
+            }
 
             // Vérifier si un joueur a gagné
             Hunter winner = board.checkVictory();
@@ -49,10 +55,11 @@ public class Controller implements ActionListener {
 
         // Affichage initial des joueurs
         int playersNb = board.getPlayersNumber();
-        mf.getAboutPanel().setLayout(new GridLayout(playersNb, 1));
+        mf.initPlayersDatas(playersNb);
+        movements = new String[playersNb];
         for(int i = 0; i < playersNb; ++i) {
             Hunter player = board.getPlayer(i);
-            mf.getAboutPanel().add(new JLabel("Personnage " + player.toString() + " " + player.getPos() + " dir " + player.getDir().toString()));
+            mf.getAboutLabel(i).setText("Personnage " + player.toString() + " " + player.getPos() + " dir " + player.getDir().toString());
         }
     }
 

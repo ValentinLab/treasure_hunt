@@ -6,5 +6,5 @@ package mlvp;
  * @author Université de Franche-Comté
  */
 public interface Questionnable {
-	public void process(Hunter h);
+	public String process(Hunter h);
 }
