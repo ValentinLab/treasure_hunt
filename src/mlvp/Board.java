@@ -124,7 +124,7 @@ public class Board {
 				new Wall(new Position(2, 8), new Position(11, 8))
 			},
 			{
-				new Wall(new Position(1,2), new Position(1,8)),
+				new Wall(new Position(2,1), new Position(8,1)),
 				new Wall(new Position(4, 4), new Position(8, 4)),
 				new Wall(new Position(2, 6), new Position(2, 8))
 			}
@@ -165,6 +165,7 @@ public class Board {
 							currentW = groundsWalls[indexGround][k];
 						}
 					}
+					System.out.println(currentW + " " + x + " " + y);
 					allCells[x][y] = new Stone(stonePosition, currentW);
 					x += 1;
 					break;

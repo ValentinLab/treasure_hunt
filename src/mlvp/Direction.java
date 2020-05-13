@@ -98,6 +98,9 @@ public class Direction {
 	 * @param w Mur que rencontre le joueur
 	 */
 	public void setNear(Hunter h, Wall w) {
+		System.out.println(h.getPos());
+		System.out.println(w.getFrom()  + " " + w.getTo() + "\n");
+
 		int distFrom = Position.computeDistance(h.getPos(), w.getFrom()); // distance joueur <-> début du mur
 		int distTo = Position.computeDistance(h.getPos(), w.getTo()); // distance joueur <-> fin du mur
 		if(w.getIsHorizontal()) {
