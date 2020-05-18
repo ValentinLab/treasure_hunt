@@ -1,5 +1,6 @@
 package mlvp;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +25,7 @@ public class Controller implements ActionListener {
 
         initFrame();
     }
+
 
     // ----- Fonctions -----
 
@@ -50,11 +52,20 @@ public class Controller implements ActionListener {
             // Vérifier si un joueur a gagné
             Hunter winner = board.checkVictory();
             if(winner != null) {
+                mf.getGridLabel(winner.getPos().getX(), winner.getPos().getY()).setText(winner.toString());
                 mf.getNextTurnBtn().setEnabled(false);
-                mf.printWinnerBox(winner.toString());
+                int playerDecision = mf.printWinnerBox(winner.toString());
+                if(playerDecision == JOptionPane.YES_OPTION) {
+                    board = new Board();
+
+                    mf.cleanFrame();
+                    initFrame();
+                    mf.getNextTurnBtn().setEnabled(true);
+                }
             }
         }
     }
+
 
     /**
      * Initialiser l'interface graphique en fonction du terrain de jeu
@@ -76,7 +87,7 @@ public class Controller implements ActionListener {
     }
 
     /**
-     * Dessiner la grille en fonction des caseselp
+     * Dessiner la grille en fonction des cases
      */
     public void drawGrid() {
         // Obtenir la taille de la grille

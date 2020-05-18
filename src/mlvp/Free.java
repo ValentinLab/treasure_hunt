@@ -12,7 +12,7 @@ public class Free extends Cell {
 
     // ----- Constructeurs -----
 
-	public Free(Position p){
+	public Free(Position p) {
 		pos = p;
 		player = null;
 	}

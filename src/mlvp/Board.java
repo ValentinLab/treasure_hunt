@@ -49,7 +49,7 @@ public class Board {
 	 * Initialiser le plateau
 	 * Permet de positionner les joueurs, les murs et le trésor
 	 */
-	private void initBoard() {
+	public void initBoard() {
 		// Tableau de terrains
 		String grounds[] = {
 			"++++++++++++++\n" +
@@ -134,8 +134,8 @@ public class Board {
 				new Wall(new Position(5,4),new Position(5,7)),
 				new Wall(new Position(2, 8), new Position(2, 10))
 			}
-
 		};
+
 
 		// Choisir un terrain
 		int indexGround = (int)(Math.random() * grounds.length);
@@ -231,8 +231,6 @@ public class Board {
 	 * Chaque joueur peut jouer un tour de jeu et interagir avec sa case cible
 	 */
 	public void playRound(String[] movements) {
-		// Affichage du board
-		System.out.println(this.toString());
 
 		// Actions des trois joueurs
 		int index = 0;
