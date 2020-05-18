@@ -34,7 +34,10 @@ public class TeleportationPoint {
         int randomIndex = 0, attempt = 0;
         do{
             randomIndex = (int)(Math.random() * teleCellsNumber);
-            ++attempt;
+
+            if(!h.getPos().equals(teleportationPoints.get(randomIndex).getPos())) {
+                ++attempt;
+            }
         } while(
             attempt < teleCellsNumber
                 && h.getPos().equals(teleportationPoints.get(randomIndex).getPos())
