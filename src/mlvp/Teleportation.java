@@ -86,6 +86,6 @@ public class Teleportation extends Cell {
         if(player == null) {
             return "?";
         }
-        return player.toString();
+        return "?" + player.toString();
     }
 }

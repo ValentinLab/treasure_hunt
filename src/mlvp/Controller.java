@@ -116,6 +116,13 @@ public class Controller implements ActionListener {
                 } else if(board.getCell(x, y).toString().equals(".")) {
                     labelTxt = "";
                     labelColor = Color.LIGHT_GRAY;
+                } else if(board.getCell(x, y).toString().charAt(0) == '?') {
+                    if(board.getCell(x, y).toString().length() > 1) {
+                        labelTxt = String.valueOf(board.getCell(x, y).toString().charAt(1));
+                    } else {
+                        labelTxt = "?";
+                    }
+                    labelColor = Color.CYAN;
                 } else {
                     labelTxt = board.getCell(x, y).toString();
                     labelColor = Color.LIGHT_GRAY;
