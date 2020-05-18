@@ -70,41 +70,46 @@ public class Board {
 			"++++++++++++\n" +
 			"+..........+\n" +
 			"+....T.....+\n" +
-			"+...####...+\n" +
+			"+.######...+\n" +
 			"+..........+\n" +
 			"+....####..+\n" +
 			"+.....B....+\n" +
-			"+..####....+\n" +
+			"+..######..+\n" +
 			"+....A.....+\n" +
 			"+..........+\n" +
 			"+..........+\n" +
 			"++++++++++++",
 
-			"++++++++++++\n" +
-			"+.........C+\n" +
-			"+..........+\n" +
-			"+...####...+\n" +
-			"+.....T#...+\n" +
-			"+......#...+\n" +
-			"+...####...+\n" +
-			"+..####....+\n" +
-			"+....A.....+\n" +
-			"+.......B..+\n" +
-			"+..........+\n" +
-			"++++++++++++",
+			"++++++++++++++++\n" +
+			"+........C.....+\n" +
+			"+..............+\n" +
+			"+...########...+\n" +
+			"+..............+\n" +
+			"+..#####.......+\n" +
+			"+....T....#....+\n" +
+			"+.........#....+\n" +
+			"+.####....#....+\n" +
+			"+.........#....+\n" +
+			"+..#####.......+\n" +
+			"+....A.........+\n" +
+			"+.........B....+\n" +
+			"+..............+\n" +
+			"+..............+\n" +
+			"++++++++++++++++",
 
-			"++++++++++++\n" +
-			"+T########C+\n" +
-			"+....#.....+\n" +
-			"+....#.....+\n" +
-			"+....#.....+\n" +
-			"+....#####.+\n" +
-			"+.####.....+\n" +
-			"+.#........+\n" +
-			"+.#..A.....+\n" +
-			"+.####..B..+\n" +
-			"+..........+\n" +
-			"++++++++++++"
+			"+++++++++++++\n" +
+			"+.T.........+\n" +
+			"+.....###...+\n" +
+			"+...........+\n" +
+			"+....#......+\n" +
+			"+....#......+\n" +
+			"+....#......+\n" +
+			"+....#......+\n" +
+			"+.#.......A.+\n" +
+			"+.#.........+\n" +
+			"+.#......B..+\n" +
+			"+....C......+\n" +
+			"+++++++++++++"
 		};
 		// Tableau de murs pour chaque terrain
 		Wall[][] groundsWalls = {
@@ -113,23 +118,21 @@ public class Board {
 				new Wall(new Position(7, 7), new Position(9, 7))
 			},
 			{
-				new Wall(new Position(4,3), new Position(7, 3)),
+				new Wall(new Position(2,3), new Position(7, 3)),
 				new Wall(new Position(5, 5), new Position(8, 5)),
-				new Wall(new Position(3, 7), new Position(6, 7))
+				new Wall(new Position(3, 7), new Position(8, 7))
 			},
 			{
-				new Wall(new Position(4,3), new Position(7,3)),
-				new Wall(new Position(7,4),new Position(7,5)),
-				new Wall(new Position(4, 6), new Position(7, 6)),
-				new Wall(new Position(3, 7), new Position(6, 7))
+				new Wall(new Position(4,3), new Position(11,3)),
+				new Wall(new Position(3,5),new Position(7,5)),
+				new Wall(new Position(2, 8), new Position(5, 8)),
+				new Wall(new Position(3, 10), new Position(7, 10)),
+				new Wall(new Position(10, 6), new Position(10, 9))
 			},
 			{
-				new Wall(new Position(1,2), new Position(1,9)),
-				new Wall(new Position(5,2),new Position(5,4)),
-				new Wall(new Position(5, 5), new Position(9, 5)),
-				new Wall(new Position(2, 6), new Position(5, 6)),
-				new Wall(new Position(2, 7), new Position(2, 8)),
-				new Wall(new Position(2, 9), new Position(5, 9))
+				new Wall(new Position(6,2), new Position(8,2)),
+				new Wall(new Position(5,4),new Position(5,7)),
+				new Wall(new Position(2, 8), new Position(2, 10))
 			}
 
 		};
@@ -147,6 +150,7 @@ public class Board {
 
 		// Parsez le terrain
 		Cell[][] allCells = new Cell[selectedGroundSize][selectedGroundSize];
+		TeleportationPoint telePoint = new TeleportationPoint();
 		Position treasureP = new Position(0, 0);
 		int x = 0, y = 0;
 		int selectedGroundLength = selectedGround.length();
@@ -174,6 +178,12 @@ public class Board {
 				case 'T':
 					treasureP = new Position(x, y);
 					allCells[x][y] = new Treasure(x-1, y-1);
+					x += 1;
+					break;
+				case '?':
+					Teleportation teleCell = new Teleportation(x-1, y-1, telePoint);
+					telePoint.addTeleportationCell(teleCell);
+					allCells[x][y] = teleCell;
 					x += 1;
 					break;
 				case '\n':
