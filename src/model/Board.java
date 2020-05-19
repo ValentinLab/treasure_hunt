@@ -109,7 +109,39 @@ public class Board {
 			"+.#..?......+\n" +
 			"+.#......B..+\n" +
 			"+....C......+\n" +
-			"+++++++++++++"
+			"+++++++++++++",
+
+			"+++++++++++++\n" +
+			"+.....T.....+\n" +
+			"+...........+\n" +
+			"+...#####...+\n" +
+			"+...........+\n" +
+			"+...........+\n" +
+			"+.####......+\n" +
+			"+...........+\n" +
+			"+......####.+\n" +
+			"+...........+\n" +
+			"+A.......B..+\n" +
+			"+....C......+\n" +
+			"+++++++++++++",
+
+			"+++++++++++++++++\n" +
+			"+..A.........B..+\n" +
+			"+........C......+\n" +
+			"+...............+\n" +
+			"+...#########...+\n" +
+			"+...............+\n" +
+			"+...............+\n" +
+			"+...#.......#...+\n" +
+			"+...#.......#...+\n" +
+			"+...#.......#...+\n" +
+			"+...#.......#...+\n" +
+			"+...............+\n" +
+			"+...#########...+\n" +
+			"+...............+\n" +
+			"+.###.......###.+\n" +
+			"+.......T.......+\n" +
+			"+++++++++++++++++"
 		};
 		// Tableau de murs pour chaque terrain
 		Wall[][] groundsWalls = {
@@ -133,7 +165,22 @@ public class Board {
 				new Wall(new Position(6,2), new Position(8,2)),
 				new Wall(new Position(5,4),new Position(5,7)),
 				new Wall(new Position(2, 8), new Position(2, 10))
+			},
+			{
+				new Wall(new Position(4,3), new Position(8,3)),
+				new Wall(new Position(2,6),new Position(5,6)),
+				new Wall(new Position(7, 8), new Position(10, 8))
+			},
+			{
+				new Wall(new Position(4,4), new Position(12,4)),
+				new Wall(new Position(4,7),new Position(4,10)),
+				new Wall(new Position(12,7),new Position(12,10)),
+				new Wall(new Position(4, 12), new Position(12, 12)),
+				new Wall(new Position(2, 14), new Position(4, 14)),
+				new Wall(new Position(12, 14), new Position(14, 14))
 			}
+
+
 		};
 
 
