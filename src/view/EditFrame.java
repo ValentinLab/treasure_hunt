@@ -9,6 +9,8 @@ import javax.swing.border.LineBorder;
 public class EditFrame extends JFrame {
     // ----- Attributs -----
 
+    int gridSize;
+
     private JButton validateBtn;
     private JButton cancelBtn;
 
@@ -61,15 +63,33 @@ public class EditFrame extends JFrame {
             toolsRadios[i].addActionListener(contr);
             radioPanel.add(toolsRadios[i]);
         }
+        toolsRadios[0].setSelected(true);
 
         // --- Panel "Grid" ---
-        JPanel gridPanel = new JPanel(new GridLayout(10, 10));
-        gridBtns = new JButton[10][10];
-        for(int y = 0; y < 10; ++y) {
-            for(int x = 0; x < 10; ++x) {
+        gridSize = 12;
+        JPanel gridPanel = new JPanel(new GridLayout(gridSize, gridSize));
+        gridBtns = new JButton[gridSize][gridSize];
+        for(int y = 0; y < gridSize; ++y) {
+            for(int x = 0; x < gridSize; ++x) {
                 gridBtns[x][y] = new JButton("");
                 gridBtns[x][y].setBorder(new LineBorder(Color.BLACK));
-                gridBtns[x][y].addActionListener(contr);
+                gridBtns[x][y].setOpaque(true);
+                gridBtns[x][y].setBackground(Color.LIGHT_GRAY);
+
+                if(y == 0 || y == gridSize-1) {
+                    gridBtns[x][y].setBackground(Color.RED);
+                    if(x > 0 && x < gridSize-1) {
+                        gridBtns[x][y].setText(String.valueOf(x));
+                    }
+                } else if(x == 0 || x == gridSize-1) {
+                    gridBtns[x][y].setBackground(Color.RED);
+                    if(y > 0 && y < gridSize-1) {
+                        gridBtns[x][y].setText(String.valueOf(y));
+                    }
+                } else {
+                    gridBtns[x][y].addActionListener(contr);
+                }
+
                 gridPanel.add(gridBtns[x][y]);
             }
         }
@@ -114,6 +134,10 @@ public class EditFrame extends JFrame {
     }
 
     // ----- Getters -----
+
+    public int getGridSize() {
+        return gridSize;
+    }
 
     public JButton getValidateBtn() {
         return validateBtn;
