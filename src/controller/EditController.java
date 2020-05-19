@@ -1,8 +1,10 @@
 package controller;
 
 import view.*;
+import model.*;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -11,12 +13,29 @@ public class EditController implements ActionListener {
 
     EditFrame ef;
     char currentBrush;
+    Position treasurePos;
+    String board;
+    char[] boardChar;
 
     // ----- Constructeur -----
 
     public EditController(EditFrame edFrame) {
         ef = edFrame;
-        currentBrush = 'X';
+        currentBrush = 'T';
+        treasurePos = null;
+        board = "++++++++++++\n" +
+                "+..........+\n" +
+                "+..........+\n" +
+                "+..........+\n" +
+                "+..........+\n" +
+                "+..........+\n" +
+                "+..........+\n" +
+                "+..........+\n" +
+                "+..........+\n" +
+                "+..........+\n" +
+                "+..........+\n" +
+                "++++++++++++";
+        boardChar = board.toCharArray();
     }
 
     // ----- Fonction -----
@@ -38,7 +57,7 @@ public class EditController implements ActionListener {
             && e.getSource() != ef.getXEndField()
             && e.getSource() != ef.getYEndField()
         ) { // Grille
-            System.out.println("Grid");
+            addElementOnGrid(e.getSource());
         }
     }
 
@@ -53,5 +72,45 @@ public class EditController implements ActionListener {
 
     private void wallPosition(JTextField xStart, JTextField yStart, JTextField xEnd, JTextField yEnd) {
         System.out.println("New wall");
+    }
+
+    private void addElementOnGrid(Object obj) {
+        int xCurrent = -1, yCurrent = -1;
+
+        // Rechercher le bouton
+        int gridSize = ef.getGridSize();
+        for(int y = 1; y < gridSize-1; ++y) {
+            for(int x = 1; x < gridSize-1; ++x) {
+                if(obj == ef.getGridBtn(x, y)) {
+                    xCurrent = x;
+                    yCurrent = y;
+                    break;
+                }
+            }
+
+            if(xCurrent != -1 && yCurrent != -1) {
+                break;
+            }
+        }
+
+        // Ajouter l'élément
+        if(currentBrush == 'T') {
+            if(treasurePos != null) {
+                int posInString = (gridSize+1)*treasurePos.getY() + treasurePos.getX();
+                boardChar[posInString] = '.';
+
+                ef.getGridBtn(treasurePos.getX(), treasurePos.getY()).setText("");
+                ef.getGridBtn(treasurePos.getX(), treasurePos.getY()).setBackground(Color.LIGHT_GRAY);
+            }
+
+            treasurePos = new Position(xCurrent, yCurrent);
+            int posInString = (gridSize+1)*treasurePos.getY() + treasurePos.getX();;
+            boardChar[posInString] = 'T';
+
+            ef.getGridBtn(xCurrent, yCurrent).setText("T");
+            ef.getGridBtn(xCurrent, yCurrent).setBackground(Color.YELLOW);
+
+            System.out.println(new String(boardChar));
+        }
     }
 }
