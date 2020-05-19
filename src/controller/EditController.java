@@ -16,6 +16,7 @@ public class EditController implements ActionListener {
     Position treasurePos;
     String board;
     char[] boardChar;
+    int playerNumber;
 
     // ----- Constructeur -----
 
@@ -36,6 +37,7 @@ public class EditController implements ActionListener {
                 "+..........+\n" +
                 "++++++++++++";
         boardChar = board.toCharArray();
+        playerNumber = 0;
     }
 
     // ----- Fonction -----
@@ -94,23 +96,67 @@ public class EditController implements ActionListener {
         }
 
         // Ajouter l'élément
-        if(currentBrush == 'T') {
-            if(treasurePos != null) {
-                int posInString = (gridSize+1)*treasurePos.getY() + treasurePos.getX();
+        if(currentBrush == 'T') { // Ajout du trésor
+            int newPos = posToIndex(gridSize, xCurrent, yCurrent);
+            if(boardChar[newPos] == '.') {
+                if(treasurePos != null) {
+                    int posInString = posToIndex(gridSize, treasurePos.getX(),treasurePos.getY());
+                    boardChar[posInString] = '.';
+
+                    ef.getGridBtn(treasurePos.getX(), treasurePos.getY()).setText("");
+                    ef.getGridBtn(treasurePos.getX(), treasurePos.getY()).setBackground(Color.LIGHT_GRAY);
+                }
+
+                treasurePos = new Position(xCurrent, yCurrent);
+
+                boardChar[newPos] = 'T';
+
+                ef.getGridBtn(xCurrent, yCurrent).setText("T");
+                ef.getGridBtn(xCurrent, yCurrent).setBackground(Color.YELLOW);
+            }
+            // TODO Ajout de l'erreur
+        } else if(currentBrush == 'M') { // Téléportation
+            int posInString = posToIndex(gridSize, xCurrent, yCurrent);
+            if(boardChar[posInString] == '.') {
+                boardChar[posInString] = '?';
+
+                ef.getGridBtn(xCurrent, yCurrent).setText("?");
+                ef.getGridBtn(xCurrent, yCurrent).setBackground(Color.PINK);
+            } else if(boardChar[posInString] == '?') {
                 boardChar[posInString] = '.';
 
-                ef.getGridBtn(treasurePos.getX(), treasurePos.getY()).setText("");
-                ef.getGridBtn(treasurePos.getX(), treasurePos.getY()).setBackground(Color.LIGHT_GRAY);
+                ef.getGridBtn(xCurrent, yCurrent).setText("");
+                ef.getGridBtn(xCurrent, yCurrent).setBackground(Color.LIGHT_GRAY);
             }
+            // TODO Ajout de l'erreur
+        } else if(currentBrush == 'J') {
+            int posInString = posToIndex(gridSize, xCurrent, yCurrent);
+            if(boardChar[posInString] == '.') {
+                char playerLetter = (char)('A' + playerNumber);
+                playerNumber += 1;
 
-            treasurePos = new Position(xCurrent, yCurrent);
-            int posInString = (gridSize+1)*treasurePos.getY() + treasurePos.getX();;
-            boardChar[posInString] = 'T';
+                boardChar[posInString] = playerLetter;
 
-            ef.getGridBtn(xCurrent, yCurrent).setText("T");
-            ef.getGridBtn(xCurrent, yCurrent).setBackground(Color.YELLOW);
+                ef.getGridBtn(xCurrent, yCurrent).setText(String.valueOf(playerLetter));
+                ef.getGridBtn(xCurrent, yCurrent).setBackground(Color.LIGHT_GRAY);
+            } else if(
+                boardChar[posInString] != '.'
+                && boardChar[posInString] != 'T'
+                && boardChar[posInString] != '#'
+            ) {
+                boardChar[posInString] = '.';
 
-            System.out.println(new String(boardChar));
+                ef.getGridBtn(xCurrent, yCurrent).setText("");
+                ef.getGridBtn(xCurrent, yCurrent).setBackground(Color.LIGHT_GRAY);
+            }
+            // TODO Ajout de l'erreur
         }
+
+        // -----> DEBUG
+        System.out.println(new String(boardChar));
+    }
+
+    private int posToIndex(int size, int x, int y) {
+        return (size+1)*y + x;
     }
 }
