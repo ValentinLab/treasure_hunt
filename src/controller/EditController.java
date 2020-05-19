@@ -73,28 +73,6 @@ public class EditController implements ActionListener {
     }
 
     private void wallPosition(JTextField xStart, JTextField yStart, JTextField xEnd, JTextField yEnd) {
-        int xs =Integer.parseInt(xStart.getText());
-        int ys =Integer.parseInt(yStart.getText());
-        int xe =Integer.parseInt(xEnd.getText());
-        int ye =Integer.parseInt(yEnd.getText());
-        int size= ef.getGridSize();
-        if(xs<1 || xs > size-1 || ys<1 || ys > size-1 || xe<1 || xe > size-1 || ye<1 || ye > size-1 ){
-            System.out.println("Zebi le mur");
-        }
-        if(xs == xe && ys!=ye || xs!=xe && ys==ye){
-            System.out.println("Le mur est good");
-        }
-        else{
-            System.out.println("Bad wall");
-        }
-        for(int i =ys; i!=ye;i++){
-            for(int j =xs; j!=xe;j++){
-                if(boardChar[posToIndex(size,j,i)]!='i'){
-                    System.out.println("la case n'est pas free");
-                }
-            }
-        }
-        System.out.println("New wall");
     }
 
     private void addElementOnGrid(Object obj) {
