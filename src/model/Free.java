@@ -1,4 +1,4 @@
-package mlvp;
+package model;
 
 /**
  * Case du plateau de type libre

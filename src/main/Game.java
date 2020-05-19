@@ -1,6 +1,6 @@
-package mlvp;
+package main;
 
-import sun.applet.Main;
+import view.MainFrame;
 
 /**
  * Classe principale
@@ -10,6 +10,6 @@ import sun.applet.Main;
 public class Game {
 	public static void main(String args[]) {
 		// Lancement de la fenêtre
-		MainFrame f = new MainFrame();
+		MainFrame frame = new MainFrame();
 	}
 }

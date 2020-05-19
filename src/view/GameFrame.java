@@ -1,4 +1,6 @@
-package mlvp;
+package view;
+
+import controller.GameController;
 
 import java.awt.*;
 import javax.swing.*;
@@ -9,7 +11,7 @@ import javax.swing.border.LineBorder;
  *
  * @author Medhi Louison et Valentin Perignon
  */
-public class MainFrame extends JFrame {
+public class GameFrame extends JFrame {
     // ----- Attributs -----
 
     JButton nextTurnBtn;
@@ -22,9 +24,9 @@ public class MainFrame extends JFrame {
 
     // ----- Constructeur -----
 
-    public MainFrame() {
+    public GameFrame() {
         // Création de la fenêtre
-        super("Chasse au trésor");
+        super("Chasse au trésor - Jeu");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500, 600);
 
@@ -49,7 +51,7 @@ public class MainFrame extends JFrame {
         c.add(aboutPanel, BorderLayout.SOUTH);
 
         // Contrôleur de la fenêtre
-        Controller contr = new Controller(this);
+        GameController contr = new GameController(this);
         nextTurnBtn.addActionListener(contr);
 
         // Affichage
@@ -83,7 +85,7 @@ public class MainFrame extends JFrame {
         gridLabels = new JLabel[size][size];
         for(int y = 0; y < size; ++y) {
             for(int x = 0; x < size; ++x) {
-                gridLabels[x][y] = new JLabel(".", SwingConstants.CENTER);
+                gridLabels[x][y] = new JLabel("", SwingConstants.CENTER);
                 gridLabels[x][y].setOpaque(true);
                 gridLabels[x][y].setBorder(new LineBorder(Color.BLACK));
 

@@ -1,4 +1,4 @@
-package mlvp;
+package model;
 
 /**
  * Mur du plateau : ensemble de pierres

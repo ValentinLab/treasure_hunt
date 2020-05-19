@@ -3,7 +3,7 @@
  *
  * @author Medhi Louison et Valentin Perignon
  */
-package mlvp;
+package model;
 
 public class Direction {
 	// ----- Attribut -----

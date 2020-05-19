@@ -1,4 +1,8 @@
-package mlvp;
+package controller;
+
+import model.Board;
+import model.Hunter;
+import view.GameFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,16 +14,16 @@ import java.awt.event.ActionListener;
  *
  * @author Medhi Louison et Valentin Perignon
  */
-public class Controller implements ActionListener {
+public class GameController implements ActionListener {
     // ----- Attributs -----
 
     Board board;
-    MainFrame mf;
+    GameFrame mf;
     String[] movements;
 
     // ----- Constructeur -----
 
-    Controller(MainFrame f) {
+    public GameController(GameFrame f) {
         board = new Board();
         mf = f;
 

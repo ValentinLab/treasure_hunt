@@ -1,22 +1,23 @@
-package mlvp;
+package model;
 
 /**
- * Case du plateau de type côté
+ * Case du plateau de type pierre
  *
  * @author Medhi Louison et Valentin Perignon
  */
-public class Side extends Cell {
+public class Stone extends Cell {
+	// ----- Attributs -----
+
+	Wall wall;
+
 	// ----- Constructeur -----
 	
-	public Side(Position p) {
+	public Stone(Position p, Wall w) {
 		pos = p;
+		wall = w;
 	}
 
-	public Side(int x, int y) {
-		this(new Position(x + 1, y + 1));
-	}
-	
-	// ----- Fonctions -----
+	// ----- Functions -----
 
 	/**
 	 * Interaction entre le joueur et la case
@@ -24,8 +25,8 @@ public class Side extends Cell {
 	 * @param h Le joueur qui arrive sur la case
 	 */
 	public String process(Hunter h) {
-		h.getDir().setOpposite();
-		return "bord du jeu";
+		h.getDir().setNear(h, wall);
+		return "un mur";
 	}
 
 	/**
@@ -34,6 +35,7 @@ public class Side extends Cell {
 	 * @return La case sous forme de chaîne
 	 */
 	public String toString() {
-		return "+";
+		return("#");
 	}
 }
+

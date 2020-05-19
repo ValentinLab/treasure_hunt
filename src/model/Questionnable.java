@@ -1,4 +1,4 @@
-package mlvp;
+package model;
 
 /**
  * Interface permettant à un joueur d'interagir avec une case du plateau

@@ -1,4 +1,4 @@
-package mlvp;
+package model;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +16,7 @@ public class Board {
 
 	// ----- Constructeur -----
 	
-	Board() {
+	public Board() {
 		// Initialisation des éléments
 		players = new ArrayList<Hunter>();
 		cells = new ArrayList<Column>();

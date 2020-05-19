@@ -1,4 +1,4 @@
-package mlvp;
+package model;
 
 /**
  * Position d'un élément sur le plateau de jeu

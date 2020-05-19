@@ -1,4 +1,4 @@
-package mlvp;
+package model;
 
 /**
  * Ensemble des directions possibles
