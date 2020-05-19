@@ -15,6 +15,7 @@ public class GameFrame extends JFrame {
     // ----- Attributs -----
 
     JButton nextTurnBtn;
+    JButton cancelBtn;
 
     JPanel gridPanel;
     JLabel[][] gridLabels;
@@ -38,6 +39,8 @@ public class GameFrame extends JFrame {
         JPanel nextTurnPanel = new JPanel();
         nextTurnBtn = new JButton("Tour suivant");
         nextTurnPanel.add(nextTurnBtn);
+        cancelBtn = new JButton("Retour au menu");
+        nextTurnPanel.add(cancelBtn);
 
         // --- Panel "Grille" ---
         gridPanel = new JPanel();
@@ -53,8 +56,10 @@ public class GameFrame extends JFrame {
         // Contrôleur de la fenêtre
         GameController contr = new GameController(this);
         nextTurnBtn.addActionListener(contr);
+        cancelBtn.addActionListener(contr);
 
         // Affichage
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 

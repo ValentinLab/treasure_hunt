@@ -47,6 +47,7 @@ public class MainFrame extends JFrame {
         c.add(menuPanel, BorderLayout.CENTER);
 
         // Affichage
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 

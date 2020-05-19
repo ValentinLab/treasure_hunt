@@ -46,7 +46,7 @@ public class EditFrame extends JFrame {
         validateBtn.setEnabled(false);
         validateBtn.addActionListener(contr);
         validatePanel.add(validateBtn);
-        cancelBtn = new JButton("Annuler");
+        cancelBtn = new JButton("Retour au menu");
         cancelBtn.addActionListener(contr);
         validatePanel.add(cancelBtn);
         // Choix de l'outil de dessin
@@ -109,6 +109,7 @@ public class EditFrame extends JFrame {
         c.add(wallPanel, BorderLayout.SOUTH);
 
         // Affichage
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 

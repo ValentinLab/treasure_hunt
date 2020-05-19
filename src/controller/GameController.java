@@ -3,6 +3,7 @@ package controller;
 import model.Board;
 import model.Hunter;
 import view.GameFrame;
+import view.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,7 +35,7 @@ public class GameController implements ActionListener {
     // ----- Fonctions -----
 
     /**
-     * Actions à réalisé lors d'un événement
+     * Actions à réaliser lors d'un événement
      *
      * @param e Événement
      */
@@ -67,6 +68,13 @@ public class GameController implements ActionListener {
                     mf.getNextTurnBtn().setEnabled(true);
                 }
             }
+        } else {
+            // Fermeture de la fenêtre principale
+            mf.setVisible(false);
+            mf.dispose();
+
+            // Lancement de la nouvelle fenêtre
+            MainFrame mainFr = new MainFrame();
         }
     }
 

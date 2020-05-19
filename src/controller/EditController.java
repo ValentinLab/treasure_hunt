@@ -43,10 +43,12 @@ public class EditController implements ActionListener {
     }
 
     private void cancelEdit() {
+        // Fermeture de la fenêtre principale
         ef.setVisible(false);
         ef.dispose();
 
-        GameFrame mf = new GameFrame();
+        // Lancement de la nouvelle fenêtre
+        MainFrame mf = new MainFrame();
     }
 
     private void wallPosition(JTextField xStart, JTextField yStart, JTextField xEnd, JTextField yEnd) {
