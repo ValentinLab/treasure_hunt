@@ -117,9 +117,15 @@ public class Board {
 			"+...#####...+\n" +
 			"+...........+\n" +
 			"+...........+\n" +
+<<<<<<< HEAD:src/model/Board.java
 			"+.####......+\n" +
 			"+...........+\n" +
 			"+......####.+\n" +
+=======
+			"+#####......+\n" +
+			"+...........+\n" +
+			"+......#####+\n" +
+>>>>>>> 5ef7c3a40d350515f25a9b89a9e1e6041407e3a8:src/mlvp/Board.java
 			"+...........+\n" +
 			"+A.......B..+\n" +
 			"+....C......+\n" +
@@ -139,9 +145,16 @@ public class Board {
 			"+...............+\n" +
 			"+...#########...+\n" +
 			"+...............+\n" +
+<<<<<<< HEAD:src/model/Board.java
 			"+.###.......###.+\n" +
 			"+.......T.......+\n" +
 			"+++++++++++++++++"
+=======
+			"+####.......####+\n" +
+			"+.......T.......+\n" +
+			"+++++++++++++++++"
+			
+>>>>>>> 5ef7c3a40d350515f25a9b89a9e1e6041407e3a8:src/mlvp/Board.java
 		};
 		// Tableau de murs pour chaque terrain
 		Wall[][] groundsWalls = {
@@ -168,19 +181,31 @@ public class Board {
 			},
 			{
 				new Wall(new Position(4,3), new Position(8,3)),
+<<<<<<< HEAD:src/model/Board.java
 				new Wall(new Position(2,6),new Position(5,6)),
 				new Wall(new Position(7, 8), new Position(10, 8))
+=======
+				new Wall(new Position(1,6),new Position(5,6)),
+				new Wall(new Position(7, 8), new Position(11, 8))
+>>>>>>> 5ef7c3a40d350515f25a9b89a9e1e6041407e3a8:src/mlvp/Board.java
 			},
 			{
 				new Wall(new Position(4,4), new Position(12,4)),
 				new Wall(new Position(4,7),new Position(4,10)),
 				new Wall(new Position(12,7),new Position(12,10)),
 				new Wall(new Position(4, 12), new Position(12, 12)),
+<<<<<<< HEAD:src/model/Board.java
 				new Wall(new Position(2, 14), new Position(4, 14)),
 				new Wall(new Position(12, 14), new Position(14, 14))
 			}
 
 
+=======
+				new Wall(new Position(1, 14), new Position(4, 14)),
+				new Wall(new Position(12, 14), new Position(15, 14))
+			}
+
+>>>>>>> 5ef7c3a40d350515f25a9b89a9e1e6041407e3a8:src/mlvp/Board.java
 		};
 
 
