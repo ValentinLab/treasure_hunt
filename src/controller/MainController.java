@@ -5,6 +5,11 @@ import view.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Contrôleur de la fenêtre de menu (fenêtre principale)
+ *
+ * @author Medhi Louison et Valentin Perignon
+ */
 public class MainController implements ActionListener {
     // ----- Attributs -----
 
@@ -18,6 +23,11 @@ public class MainController implements ActionListener {
 
     // ----- Fonction -----
 
+    /**
+     * Actions à réaliser lors d'un événement
+     *
+     * @param e Événement
+     */
     public void actionPerformed(ActionEvent e) {
         // Fermeture de la fenêtre principale
         mf.setVisible(false);

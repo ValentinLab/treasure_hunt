@@ -7,8 +7,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.util.LinkedList;
 
+/**
+ * Contrôleur de le fenêtre d'édition d'un terrain
+ *
+ * @author Medhi Louison et Valentin Perignon
+ */
 public class EditController implements ActionListener {
     // ----- Attributs -----
 
@@ -49,6 +55,11 @@ public class EditController implements ActionListener {
 
     // ----- Fonction -----
 
+    /**
+     * Actions à réaliser lors d'un événement
+     *
+     * @param e Événement
+     */
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == ef.getToolBtn(0)) { // Bouton radio "Trésor"
             currentBrush = 'T';
@@ -75,6 +86,10 @@ public class EditController implements ActionListener {
         }
     }
 
+    /**
+     * Activer les trois boutons radio qui permettent de choisir l'outil de dessin
+     * (Trésor, Joueur et case de téléportation)
+     */
     private void enableTools() {
         for(int i = 0; i < 3; ++i) {
             ef.getToolBtn(i).setEnabled(true);
@@ -94,6 +109,9 @@ public class EditController implements ActionListener {
         }
     }
 
+    /**
+     * Annuler l'édition d'un plateau de retourner sur le menu de l'application
+     */
     private void cancelEdit() {
         // Fermeture de la fenêtre principale
         ef.setVisible(false);
@@ -103,6 +121,10 @@ public class EditController implements ActionListener {
         MainFrame mf = new MainFrame();
     }
 
+    /**
+     * Préparer la fenêtre à l'ajout d'un mur
+     * (i.e. désactiver les boutons radio et intervertir l'état des boutons d'édition de mur)
+     */
     private void addWallOnGrid() {
         // Désactiver les checkboxs
         for(int i = 0; i < 3; ++i) {
@@ -117,6 +139,10 @@ public class EditController implements ActionListener {
         ef.getAddWallBtn().setEnabled(false);
     }
 
+    /**
+     * Annuler l'ajout d'un mur
+     * (i.e réactiver les boutons radio et intervertir l'état des boutons d'édition de mur)
+     */
     private void cancelWallOnGrid() {
         // Activer les checkboxs
         enableTools();
@@ -128,6 +154,14 @@ public class EditController implements ActionListener {
         ef.getCancelWallBtn().setEnabled(false);
     }
 
+    /**
+     * Vérifier les cases qui entourent le début ou la fin du mur pour s'assurer qu'il ne touche aucun mur
+     *
+     * @param gridSize Taille de la grille
+     * @param xCurrent Position x du mur
+     * @param yCurrent Position y du mur
+     * @return Vrai si la case n'est pas entourée par un mur
+     */
     private boolean checkWallPosition(int gridSize, int xCurrent, int yCurrent) {
         boolean isGood = true;
         for(int y = -1; y <= 1; ++y) {
@@ -148,6 +182,12 @@ public class EditController implements ActionListener {
         return isGood;
     }
 
+    /**
+     * Ajouter un élément sur la grille
+     * (i.e trésor, joueur, case de téléportation ou mur)
+     *
+     * @param obj Case de la grille cliquée
+     */
     private void addElementOnGrid(Object obj) {
         int xCurrent = -1, yCurrent = -1;
 
@@ -384,6 +424,14 @@ public class EditController implements ActionListener {
         }
     }
 
+    /**
+     * Transformer une positon x,y en une position en row major
+     *
+     * @param size Taille de la grille
+     * @param x Position x
+     * @param y Position y
+     * @return Position en row major
+     */
     private int posToIndex(int size, int x, int y) {
         return (size+1)*y + x;
     }

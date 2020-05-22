@@ -1,10 +1,7 @@
 package controller;
 
-import model.Board;
-import model.Hunter;
-import model.Wall;
-import view.GameFrame;
-import view.MainFrame;
+import model.*;
+import view.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
- * Contrôleur de l'interface graphique
+ * Contrôleur de la fenêtre de jeu
  *
  * @author Medhi Louison et Valentin Perignon
  */
