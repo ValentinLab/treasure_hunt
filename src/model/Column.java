@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Colonne de cases du plateau de jeu
@@ -20,10 +21,7 @@ public class Column {
 		col = new ArrayList<Cell>();
 
 		// Ajout des cellules
-		int columnSize = rowOfCells.length;
-		for(int i = 0; i < columnSize; ++i) {
-			col.add(rowOfCells[i]);
-		}
+		Collections.addAll(col, rowOfCells);
 	}
 
 	// ----- Getter -----

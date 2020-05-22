@@ -1,10 +1,10 @@
+package model;
+
 /**
  * Direction d'un joueur
  *
  * @author Medhi Louison et Valentin Perignon
  */
-package model;
-
 public class Direction {
 	// ----- Attribut -----
 	

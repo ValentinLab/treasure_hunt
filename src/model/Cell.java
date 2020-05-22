@@ -19,15 +19,6 @@ public abstract class Cell implements Questionnable {
 	//  ----- Fonctions -----
 
 	/**
-	 * Transformer la position de la case en chaîne de caractères
-	 *
-	 * @return La position sous forme de chaîne
-	 */
-	public String posToStr() {
-		return pos.getX() + " " + pos.getY();
-	}
-
-	/**
 	 * Interaction entre le joueur et la case
 	 *
 	 * @param h Le joueur qui arrive sur la case
