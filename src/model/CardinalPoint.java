@@ -2,6 +2,8 @@ package model;
 
 /**
  * Ensemble des directions possibles
+ *
+ * @author Medhi Louison et Valentin Perignon
  */
 public enum CardinalPoint {
 	EAST,

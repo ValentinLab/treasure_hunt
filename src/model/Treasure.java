@@ -27,6 +27,7 @@ public class Treasure extends Cell {
 	 * Interaction entre le joueur et la case
 	 *
 	 * @param h Le joueur qui arrive sur la case
+	 * @return Une chaîne de caractères expliquant l'action du joueur
 	 */
 	public String process(Hunter h) {
 		h.setPos(pos);

@@ -16,6 +16,14 @@ public class Board {
 
 	// ----- Constructeur -----
 
+	/**
+	 * Création d'un plateau de jeu
+	 * (le plateau de jeu est transmis par les paramètres,
+	 * si la chaîne est vide, le plateau est sélectionné au hasard)
+	 *
+	 * @param builtBoard Chaîne représentant le plateau de jeu
+	 * @param builtWalls Murs du plateau
+	 */
 	public Board(String builtBoard, Wall[] builtWalls) {
 		// Initialisation des éléments
 		players = new ArrayList<Hunter>();
@@ -25,6 +33,10 @@ public class Board {
 		initBoard(builtBoard, builtWalls);
 	}
 
+	/**
+	 * Création d'un plateau de jeu
+	 * (un plateau au hasard sera sélectionné pour la partie)
+	 */
 	public Board() {
 		this("", null);
 	}

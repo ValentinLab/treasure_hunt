@@ -48,6 +48,7 @@ public class Teleportation extends Cell {
      * Interaction entre le joueur et la case
      *
      * @param h Le joueur qui arrive sur la case
+     * @return Une chaîne de caractères expliquant l'action du joueur
      */
     public String process(Hunter h) {
         // Supprimer le joueur actuellement sur la case s'il s'est déplace

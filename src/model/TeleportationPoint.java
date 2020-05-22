@@ -44,7 +44,7 @@ public class TeleportationPoint {
                 && !teleportationPoints.get(randomIndex).isFree()
         );
 
-        if(attempt == teleCellsNumber && !teleportationPoints.get(randomIndex).isFree()) {
+        if(!teleportationPoints.get(randomIndex).isFree()) {
             return null;
         }
 
