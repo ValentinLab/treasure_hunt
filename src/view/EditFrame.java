@@ -33,6 +33,7 @@ public class EditFrame extends JFrame {
         super("Chasse au trésor - Édition d'un plateau");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(500, 650);
+        setResizable(false);
 
         // Contrôleur de la fenêtre
         EditController contr = new EditController(this);

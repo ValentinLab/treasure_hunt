@@ -310,7 +310,6 @@ public class Board {
 	 * @param movements Ensemble des mouvements réalisés par les joueurs
 	 */
 	public void playRound(String[] movements) {
-
 		// Actions des trois joueurs
 		int index = 0;
 		for(Hunter h : players) {
@@ -318,9 +317,9 @@ public class Board {
 			Cell target = getDestCell(h);
 
 			// Action sur la case
-			movements[index] = "Personnage " + h + " : ";
+			movements[index] = "<html><strong>Personnage " + h + "</strong> : ";
 			movements[index] += target.process(h);
-			movements[index] += " : " + h.getPos() + " dir " + h.getDir();
+			movements[index] += " <em>(" + h.getPos() + " dir " + h.getDir()  + ")</em></html>";
 			++index;
 		}
 	}

@@ -46,7 +46,7 @@ public class GameController implements ActionListener {
             board.playRound(movements);
 
             // Mettre à jour l'affichage
-            drawGrid();
+            updateGrid();
             for(int i = 0; i < movements.length; ++i) {
                 mf.getAboutLabel(i).setText(movements[i]);
             }
@@ -103,17 +103,15 @@ public class GameController implements ActionListener {
         int boardSize = board.getSize();
 
         // Afficher les éléments de la grille
-        String labelImg;
-        String labelTxt;
+        String labelImg, labelTxt;
         for(int y = 0; y < boardSize; ++y) {
             for(int x = 0; x < boardSize; ++x) {
-                if(board.getCell(x, y).toString().equals("#")) {
-                    labelTxt = "";
-                } else if(board.getCell(x, y).toString().equals("+")) {
-                    labelTxt = "";
-                } else if(board.getCell(x, y).toString().equals("T")) {
-                    labelTxt = "";
-                } else if(board.getCell(x, y).toString().equals(".")) {
+                if(
+                    board.getCell(x, y).toString().equals("#")
+                        || board.getCell(x, y).toString().equals("+")
+                        || board.getCell(x, y).toString().equals("T")
+                        || board.getCell(x, y).toString().equals(".")
+                ) {
                     labelTxt = "";
                 } else if(board.getCell(x, y).toString().charAt(0) == '?') {
                     if(board.getCell(x, y).toString().length() > 1) {
@@ -126,7 +124,7 @@ public class GameController implements ActionListener {
                 }
 
                 labelImg = board.getCell(x, y).getImagePath();
-                int labelSize = 500/boardSize;
+                int labelSize = mf.getSize().width/boardSize;
                 ImageIcon imageIcon = new ImageIcon(
                     new ImageIcon(labelImg).getImage().getScaledInstance(labelSize, labelSize, Image.SCALE_DEFAULT)
                 );
@@ -135,6 +133,38 @@ public class GameController implements ActionListener {
                 mf.getGridLabel(x, y).setText(labelTxt);
                 mf.getGridLabel(x, y).setForeground(Color.WHITE);
                 mf.getGridLabel(x, y).setHorizontalTextPosition(JLabel.CENTER);
+            }
+        }
+
+        mf.repaint();
+    }
+
+    public void updateGrid() {
+        // Obtenir la taille de la grille
+        int boardSize = board.getSize();
+
+        // Afficher les éléments de la grille
+        String labelTxt;
+        for(int y = 0; y < boardSize; ++y) {
+            for(int x = 0; x < boardSize; ++x) {
+                if(
+                    board.getCell(x, y).toString().equals("#")
+                        || board.getCell(x, y).toString().equals("+")
+                        || board.getCell(x, y).toString().equals("T")
+                        || board.getCell(x, y).toString().equals(".")
+                ) {
+                    labelTxt = "";
+                } else if(board.getCell(x, y).toString().charAt(0) == '?') {
+                    if(board.getCell(x, y).toString().length() > 1) {
+                        labelTxt = String.valueOf(board.getCell(x, y).toString().charAt(1));
+                    } else {
+                        labelTxt = "";
+                    }
+                } else {
+                    labelTxt = board.getCell(x, y).toString();
+                }
+
+                mf.getGridLabel(x, y).setText(labelTxt);
             }
         }
 

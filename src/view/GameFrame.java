@@ -31,6 +31,7 @@ public class GameFrame extends JFrame {
         super("Chasse au trésor - Jeu");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500, 600);
+        setResizable(false);
 
         // Container de la fenêtre
         Container c = getContentPane();
@@ -95,7 +96,10 @@ public class GameFrame extends JFrame {
         gridLabels = new JLabel[size][size];
         for(int y = 0; y < size; ++y) {
             for(int x = 0; x < size; ++x) {
-                gridLabels[x][y] = new JLabel("", SwingConstants.CENTER);
+                gridLabels[x][y] = new JLabel("");
+                gridLabels[x][y].setForeground(Color.WHITE);
+                gridLabels[x][y].setHorizontalTextPosition(JLabel.CENTER);
+
                 gridLabels[x][y].setOpaque(true);
 
                 gridPanel.add(gridLabels[x][y]);
