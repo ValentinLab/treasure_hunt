@@ -18,11 +18,8 @@ public class EditFrame extends JFrame {
 
     private JButton[][] gridBtns;
 
-    private JTextField xStartField;
-    private JTextField yStartField;
-    private JTextField xEndField;
-    private JTextField yEndField;
-    private JButton addWall;
+    private JButton addWallBtn;
+    private JButton cancelWallBtn;
 
     // ----- Constructeur -----
 
@@ -30,7 +27,7 @@ public class EditFrame extends JFrame {
         // Création de la fenêtre
         super("Chasse au trésor - Édition d'un plateau");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(500, 700);
+        setSize(500, 650);
 
         // Contrôleur de la fenêtre
         EditController contr = new EditController(this);
@@ -95,33 +92,14 @@ public class EditFrame extends JFrame {
         }
 
         // --- Panel "Ajout d'un mur" ---
-        JPanel wallPanel = new JPanel(new GridLayout(3, 1));
-        // Position de départ
-        JPanel startWallPanel = new JPanel();
-        wallPanel.add(startWallPanel);
-        startWallPanel.add(new JLabel("Position de départ du mur (x et y)"));
-        xStartField = new JTextField("1");
-        xStartField.setColumns(2);
-        yStartField = new JTextField("1");
-        yStartField.setColumns(2);
-        startWallPanel.add(xStartField);
-        startWallPanel.add(yStartField);
-        // Position de fin
-        JPanel endWallPanel = new JPanel();
-        wallPanel.add(endWallPanel);
-        endWallPanel.add(new JLabel("Position de fin du mur (x et y)"));
-        xEndField = new JTextField("1");
-        xEndField.setColumns(2);
-        yEndField = new JTextField("1");
-        yEndField.setColumns(2);
-        endWallPanel.add(xEndField);
-        endWallPanel.add(yEndField);
-        // Bouton
-        JPanel btnWallPanel = new JPanel();
-        wallPanel.add(btnWallPanel);
-        addWall = new JButton("Ajouter le mur");
-        addWall.addActionListener(contr);
-        btnWallPanel.add(addWall);
+        JPanel wallPanel = new JPanel();
+        addWallBtn = new JButton("Ajouter un mur");
+        addWallBtn.addActionListener(contr);
+        wallPanel.add(addWallBtn);
+        cancelWallBtn = new JButton("Annuler l'ajout du mur");
+        cancelWallBtn.setEnabled(false);
+        cancelWallBtn.addActionListener(contr);
+        wallPanel.add(cancelWallBtn);
 
         // Ajout des panels
         c.add(toolsPanel, BorderLayout.NORTH);
@@ -155,23 +133,11 @@ public class EditFrame extends JFrame {
         return gridBtns[x][y];
     }
 
-    public JTextField getXStartField() {
-        return xStartField;
+    public JButton getAddWallBtn() {
+        return addWallBtn;
     }
 
-    public JTextField getYStartField() {
-        return yStartField;
-    }
-
-    public JTextField getXEndField() {
-        return xEndField;
-    }
-
-    public JTextField getYEndField() {
-        return yEndField;
-    }
-
-    public JButton getAddWall() {
-        return addWall;
+    public JButton getCancelWallBtn() {
+        return cancelWallBtn;
     }
 }

@@ -1,6 +1,7 @@
 package view;
 
 import controller.GameController;
+import model.Wall;
 
 import java.awt.*;
 import javax.swing.*;
@@ -25,7 +26,7 @@ public class GameFrame extends JFrame {
 
     // ----- Constructeur -----
 
-    public GameFrame() {
+    public GameFrame(String builtBoard, Wall[] builtWalls) {
         // Création de la fenêtre
         super("Chasse au trésor - Jeu");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -54,13 +55,17 @@ public class GameFrame extends JFrame {
         c.add(aboutPanel, BorderLayout.SOUTH);
 
         // Contrôleur de la fenêtre
-        GameController contr = new GameController(this);
+        GameController contr = new GameController(this, builtBoard, builtWalls);
         nextTurnBtn.addActionListener(contr);
         cancelBtn.addActionListener(contr);
 
         // Affichage
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    public GameFrame() {
+        this("", null);
     }
 
     // ----- Getters -----

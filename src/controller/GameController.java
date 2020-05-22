@@ -2,6 +2,7 @@ package controller;
 
 import model.Board;
 import model.Hunter;
+import model.Wall;
 import view.GameFrame;
 import view.MainFrame;
 
@@ -24,13 +25,12 @@ public class GameController implements ActionListener {
 
     // ----- Constructeur -----
 
-    public GameController(GameFrame f) {
-        board = new Board();
+    public GameController(GameFrame f, String builtBoard, Wall[] builtWalls) {
+        board = new Board(builtBoard, builtWalls);
         mf = f;
 
         initFrame();
     }
-
 
     // ----- Fonctions -----
 

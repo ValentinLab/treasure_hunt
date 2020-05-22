@@ -16,13 +16,17 @@ public class Board {
 
 	// ----- Constructeur -----
 
-	public Board() {
+	public Board(String builtBoard, Wall[] builtWalls) {
 		// Initialisation des éléments
 		players = new ArrayList<Hunter>();
 		cells = new ArrayList<Column>();
 
 		// Initialisation du tableau de jeu
-		initBoard();
+		initBoard(builtBoard, builtWalls);
+	}
+
+	public Board() {
+		this("", null);
 	}
 
 	// ----- Getters -----
@@ -49,99 +53,99 @@ public class Board {
 	 * Initialiser le plateau
 	 * Permet de positionner les joueurs, les murs et le trésor
 	 */
-	public void initBoard() {
+	public void initBoard(String builtBoard, Wall[] builtWalls) {
 		// Tableau de terrains
 		String grounds[] = {
 			"++++++++++++++\n" +
-				"+.....?......+\n" +
-				"+............+\n" +
-				"+...#........+\n" +
-				"+.T.#.....A..+\n" +
-				"+...#?.......+\n" +
-				"+...#........+\n" +
-				"+.?.#..###...+\n" +
-				"+...#...C....+\n" +
-				"+...#.?..B...+\n" +
-				"+............+\n" +
-				"+..?.........+\n" +
-				"+............+\n" +
-				"++++++++++++++",
+			"+.....?......+\n" +
+			"+............+\n" +
+			"+...#........+\n" +
+			"+.T.#.....A..+\n" +
+			"+...#?.......+\n" +
+			"+...#........+\n" +
+			"+.?.#..###...+\n" +
+			"+...#...C....+\n" +
+			"+...#.?..B...+\n" +
+			"+............+\n" +
+			"+..?.........+\n" +
+			"+............+\n" +
+			"++++++++++++++",
 
 			"++++++++++++\n" +
-				"+.......?..+\n" +
-				"+.?..T.....+\n" +
-				"+.######...+\n" +
-				"+..........+\n" +
-				"+....####..+\n" +
-				"+..?..B....+\n" +
-				"+..######..+\n" +
-				"+....A.....+\n" +
-				"+..........+\n" +
-				"+......?...+\n" +
-				"++++++++++++",
+			"+.......?..+\n" +
+			"+.?..T.....+\n" +
+			"+.######...+\n" +
+			"+..........+\n" +
+			"+....####..+\n" +
+			"+..?..B....+\n" +
+			"+..######..+\n" +
+			"+....A.....+\n" +
+			"+..........+\n" +
+			"+......?...+\n" +
+			"++++++++++++",
 
 			"++++++++++++++++\n" +
-				"+........C.....+\n" +
-				"+..............+\n" +
-				"+...########...+\n" +
-				"+..?.........?.+\n" +
-				"+..#####.......+\n" +
-				"+....T....#....+\n" +
-				"+.....?...#....+\n" +
-				"+.####....#....+\n" +
-				"+.........#.?..+\n" +
-				"+..#####.......+\n" +
-				"+.?..A.........+\n" +
-				"+.........B....+\n" +
-				"+...?..........+\n" +
-				"+..............+\n" +
-				"++++++++++++++++",
+			"+........C.....+\n" +
+			"+..............+\n" +
+			"+...########...+\n" +
+			"+..?.........?.+\n" +
+			"+..#####.......+\n" +
+			"+....T....#....+\n" +
+			"+.....?...#....+\n" +
+			"+.####....#....+\n" +
+			"+.........#.?..+\n" +
+			"+..#####.......+\n" +
+			"+.?..A.........+\n" +
+			"+.........B....+\n" +
+			"+...?..........+\n" +
+			"+..............+\n" +
+			"++++++++++++++++",
 
 			"+++++++++++++\n" +
-				"+.T.........+\n" +
-				"+.....###...+\n" +
-				"+...........+\n" +
-				"+....#......+\n" +
-				"+.?..#...?..+\n" +
-				"+....#......+\n" +
-				"+....#......+\n" +
-				"+.#.......A.+\n" +
-				"+.#..?......+\n" +
-				"+.#......B..+\n" +
-				"+....C......+\n" +
-				"+++++++++++++",
+			"+.T.........+\n" +
+			"+.....###...+\n" +
+			"+...........+\n" +
+			"+....#......+\n" +
+			"+.?..#...?..+\n" +
+			"+....#......+\n" +
+			"+....#......+\n" +
+			"+.#.......A.+\n" +
+			"+.#..?......+\n" +
+			"+.#......B..+\n" +
+			"+....C......+\n" +
+			"+++++++++++++",
 
 			"+++++++++++++\n" +
-				"+?....T.....+\n" +
-				"+...........+\n" +
-				"+...#####?..+\n" +
-				"+.....?.....+\n" +
-				"+...........+\n" +
-				"+.####......+\n" +
-				"+...........+\n" +
-				"+......####.+\n" +
-				"+...........+\n" +
-				"+A.......B..+\n" +
-				"+?...C.....?+\n" +
-				"+++++++++++++",
+			"+?....T.....+\n" +
+			"+...........+\n" +
+			"+...#####?..+\n" +
+			"+.....?.....+\n" +
+			"+...........+\n" +
+			"+.####......+\n" +
+			"+...........+\n" +
+			"+......####.+\n" +
+			"+...........+\n" +
+			"+A.......B..+\n" +
+			"+?...C.....?+\n" +
+			"+++++++++++++",
 
 			"+++++++++++++++++\n" +
-				"+..A.........B..+\n" +
-				"+........C......+\n" +
-				"+...............+\n" +
-				"+...#########...+\n" +
-				"+.......?.......+\n" +
-				"+...............+\n" +
-				"+...#.......#...+\n" +
-				"+...#..?.?..#...+\n" +
-				"+...#.......#...+\n" +
-				"+...#.......#...+\n" +
-				"+.......?.......+\n" +
-				"+...#########...+\n" +
-				"+...............+\n" +
-				"+.###.......###.+\n" +
-				"+.......T....?..+\n" +
-				"+++++++++++++++++"
+			"+..A.........B..+\n" +
+			"+........C......+\n" +
+			"+...............+\n" +
+			"+...#########...+\n" +
+			"+.......?.......+\n" +
+			"+...............+\n" +
+			"+...#.......#...+\n" +
+			"+...#..?.?..#...+\n" +
+			"+...#.......#...+\n" +
+			"+...#.......#...+\n" +
+			"+.......?.......+\n" +
+			"+...#########...+\n" +
+			"+...............+\n" +
+			"+.###.......###.+\n" +
+			"+.......T....?..+\n" +
+			"+++++++++++++++++"
 		};
 		// Tableau de murs pour chaque terrain
 		Wall[][] groundsWalls = {
@@ -183,17 +187,28 @@ public class Board {
 
 		};
 
+		// Choix du terrain
+		String selectedGround;
+		Wall[] selectedWalls;
+		if(!builtBoard.equals("") && builtWalls != null) {
+			// Terrain transmis en paramètres
+			selectedGround = builtBoard;
+			selectedWalls = builtWalls;
+		} else {
+			// Choisir un terrain au hasard
+			int indexGround = (int)(Math.random() * grounds.length);
+			selectedGround = grounds[indexGround];
+			// Murs liés au terrain
+			selectedWalls = groundsWalls[indexGround];
+		}
 
-		// Choisir un terrain
-		int indexGround = (int)(Math.random() * grounds.length);
-		String selectedGround = grounds[indexGround];
 		// Taille du terrain
 		int selectedGroundSize = 0;
 		while(selectedGround.charAt(selectedGroundSize) != '\n') {
 			++selectedGroundSize;
 		}
 		// Nombre de murs
-		int wallsNumber = groundsWalls[indexGround].length;
+		int wallsNumber = selectedWalls.length;
 
 		// Parsez le terrain
 		Cell[][] allCells = new Cell[selectedGroundSize][selectedGroundSize];
@@ -215,8 +230,8 @@ public class Board {
 					Position stonePosition = new Position(x, y);
 					Wall currentW = null;
 					for(int k = 0; k < wallsNumber; ++k) {
-						if(groundsWalls[indexGround][k].isInside(stonePosition)) {
-							currentW = groundsWalls[indexGround][k];
+						if(selectedWalls[k].isInside(stonePosition)) {
+							currentW = selectedWalls[k];
 						}
 					}
 					allCells[x][y] = new Stone(stonePosition, currentW);

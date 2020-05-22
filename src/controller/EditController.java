@@ -7,16 +7,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 public class EditController implements ActionListener {
     // ----- Attributs -----
 
     EditFrame ef;
+
     char currentBrush;
+
     Position treasurePos;
     String board;
     char[] boardChar;
+    LinkedList<Wall> walls;
     int playerNumber;
+    int playerNumberReal;
 
     // ----- Constructeur -----
 
@@ -37,7 +42,9 @@ public class EditController implements ActionListener {
                 "+..........+\n" +
                 "++++++++++++";
         boardChar = board.toCharArray();
+        walls = new LinkedList<Wall>();
         playerNumber = 0;
+        playerNumberReal = 0;
     }
 
     // ----- Fonction -----
@@ -49,16 +56,21 @@ public class EditController implements ActionListener {
             currentBrush = 'J';
         } else if(e.getSource() == ef.getToolBtn(2)) { // Bouton radio "Téléportation"
             currentBrush = 'M';
+        } else if(e.getSource() == ef.getValidateBtn()) { // Bouton "Valider le plateau"
+            // Fermeture de la fenêtre
+            ef.setVisible(false);
+            ef.dispose();
+
+            // Ouverture du jeu
+            Wall[] builtWalls = new Wall[walls.size()];
+            GameFrame gf = new GameFrame(new String(boardChar), walls.toArray(builtWalls));
         } else if(e.getSource() == ef.getCancelBtn()) { // Bouton "Annuler"
             cancelEdit();
-        } else if(e.getSource() == ef.getAddWall()) { // Bouton "Ajouter un mur"
-            wallPosition(ef.getXStartField(), ef.getYStartField(), ef.getXEndField(), ef.getYEndField());
-        } else if(
-            e.getSource() != ef.getXStartField()
-            && e.getSource() != ef.getYStartField()
-            && e.getSource() != ef.getXEndField()
-            && e.getSource() != ef.getYEndField()
-        ) { // Grille
+        } else if(e.getSource() == ef.getAddWallBtn()) { // Bouton "Ajouter un mur"
+            addWallOnGrid();
+        } else if(e.getSource() == ef.getCancelWallBtn()) { // Bouton "Annule le mur"
+            cancelWallOnGrid();
+        } else { // Grille
             addElementOnGrid(e.getSource());
         }
     }
@@ -72,7 +84,44 @@ public class EditController implements ActionListener {
         MainFrame mf = new MainFrame();
     }
 
-    private void wallPosition(JTextField xStart, JTextField yStart, JTextField xEnd, JTextField yEnd) {
+    private void addWallOnGrid() {
+        // Désactiver les checkboxs
+        for(int i = 0; i < 3; ++i) {
+            ef.getToolBtn(i).setEnabled(false);
+        }
+        currentBrush = 'W';
+
+        // Activer le bouton d'annulation
+        ef.getCancelWallBtn().setEnabled(true);
+
+        // Désactiver le bouton actuel
+        ef.getAddWallBtn().setEnabled(false);
+    }
+
+    private void cancelWallOnGrid() {
+        // Activer les checkboxs
+        for(int i = 0; i < 3; ++i) {
+            ef.getToolBtn(i).setEnabled(true);
+            if(ef.getToolBtn(i).isSelected()) {
+                switch(i) {
+                    case 0:
+                        currentBrush = 'T';
+                        break;
+                    case 1:
+                        currentBrush = 'J';
+                        break;
+                    case 2:
+                        currentBrush = 'M';
+                        break;
+                }
+            }
+        }
+
+        // Activer le bouton d'ajout
+        ef.getAddWallBtn().setEnabled(true);
+
+        // Désactiver le bouton acteuel
+        ef.getCancelWallBtn().setEnabled(false);
     }
 
     private void addElementOnGrid(Object obj) {
@@ -112,8 +161,14 @@ public class EditController implements ActionListener {
 
                 ef.getGridBtn(xCurrent, yCurrent).setText("T");
                 ef.getGridBtn(xCurrent, yCurrent).setBackground(Color.YELLOW);
+            } else {
+                JOptionPane.showMessageDialog(
+                    ef,
+                    "Le trésor doit être posé sur une case vide.",
+                    "Erreur dans l'ajout du trésor",
+                    JOptionPane.ERROR_MESSAGE
+                );
             }
-            // TODO Ajout de l'erreur
         } else if(currentBrush == 'M') { // Téléportation
             int posInString = posToIndex(gridSize, xCurrent, yCurrent);
             if(boardChar[posInString] == '.') {
@@ -126,13 +181,20 @@ public class EditController implements ActionListener {
 
                 ef.getGridBtn(xCurrent, yCurrent).setText("");
                 ef.getGridBtn(xCurrent, yCurrent).setBackground(Color.LIGHT_GRAY);
+            } else {
+                JOptionPane.showMessageDialog(
+                    ef,
+                    "Une case de téléportation doit être posé sur une case vide.",
+                    "Erreur dans l'ajout d'une case de téléportation",
+                    JOptionPane.ERROR_MESSAGE
+                );
             }
-            // TODO Ajout de l'erreur
-        } else if(currentBrush == 'J') {
+        } else if(currentBrush == 'J') { // Joueur
             int posInString = posToIndex(gridSize, xCurrent, yCurrent);
             if(boardChar[posInString] == '.') {
                 char playerLetter = (char)('A' + playerNumber);
                 playerNumber += 1;
+                playerNumberReal += 1;
 
                 boardChar[posInString] = playerLetter;
 
@@ -144,15 +206,97 @@ public class EditController implements ActionListener {
                 && boardChar[posInString] != '#'
             ) {
                 boardChar[posInString] = '.';
+                playerNumberReal -= 1;
 
                 ef.getGridBtn(xCurrent, yCurrent).setText("");
                 ef.getGridBtn(xCurrent, yCurrent).setBackground(Color.LIGHT_GRAY);
+            } else {
+                JOptionPane.showMessageDialog(
+                    ef,
+                    "Un joueur doit être posé sur une case vide.",
+                    "Erreur dans l'ajout d'un joueur",
+                    JOptionPane.ERROR_MESSAGE
+                );
             }
-            // TODO Ajout de l'erreur
+        } else if(currentBrush == 'W') { // Mur
+            int posInString = posToIndex(gridSize, xCurrent, yCurrent);
+
+            if(boardChar[posInString] == '.') {
+                if(
+                    walls.isEmpty()
+                    || (walls.getLast().getTo().getX() != 0 && walls.getLast().getTo().getY()  != 0 )
+                ) { // point de départ du mur
+                    walls.add(new Wall(new Position (xCurrent, yCurrent), new Position(0, 0)));
+
+                    ef.getGridBtn(xCurrent, yCurrent).setText("#");
+                    ef.getGridBtn(xCurrent, yCurrent).setBackground(Color.CYAN);
+                } else { // Point d'arrivé du mur
+                    Position from = walls.getLast().getFrom();
+
+                    int xFrom = from.getX(), yFrom = from.getY();
+                    if ((xFrom == xCurrent && yFrom < yCurrent) || (xFrom < xCurrent && yFrom == yCurrent)) {
+                        // Vérifier que le mur n'empiète rien
+                        boolean isGood = true;
+                        for(int y = from.getY(); y <= yCurrent; ++y) {
+                            for(int x = from.getX(); x <= xCurrent; ++x) {
+                                int targetPos = posToIndex(gridSize, x, y);
+                                if(boardChar[targetPos] != '.') {
+                                    isGood = false;
+                                    break;
+                                }
+                            }
+                            if(!isGood) {
+                                break;
+                            }
+                        }
+
+                        // Ajout du mur
+                        if(isGood) {
+                            walls.removeLast();
+                            walls.add(new Wall(from, new Position(xCurrent, yCurrent)));
+
+                            for(int y = from.getY(); y <= yCurrent; ++y) {
+                                for(int x = from.getX(); x <= xCurrent; ++x) {
+                                    int targetPos = posToIndex(gridSize, x, y);
+                                    boardChar[targetPos] = '#';
+
+                                    ef.getGridBtn(x, y).setText("#");
+                                    ef.getGridBtn(x, y).setBackground(Color.BLUE);
+                                }
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(
+                                ef,
+                                "Le mur ne peut pas empiéter des élément.",
+                                "Erreur dans l'ajout d'un mur",
+                                JOptionPane.ERROR_MESSAGE
+                            );
+                        }
+                    } else {
+                        // Message d'erreur
+                        JOptionPane.showMessageDialog(
+                            ef,
+                            "La position de départ ne peut pas être après la position d'arrivé.",
+                            "Erreur dans l'ajout d'un mur",
+                            JOptionPane.ERROR_MESSAGE
+                        );
+
+                        // Annulation de l'ajout du mur
+                        cancelWallOnGrid();
+                        ef.getGridBtn(from.getX(), from.getY()).setText("");
+                        ef.getGridBtn(from.getX(), from.getY()).setBackground(Color.LIGHT_GRAY);
+                        walls.removeLast();
+                    }
+                }
+            }
         }
 
-        // -----> DEBUG
-        System.out.println(new String(boardChar));
+        // Activer le bouton nouveau jeu si besoin
+        if(treasurePos != null && playerNumberReal > 0) {
+            ef.getValidateBtn().setEnabled(true);
+        } else {
+            ef.getValidateBtn().setEnabled(false);
+        }
     }
 
     private int posToIndex(int size, int x, int y) {
