@@ -59,6 +59,10 @@ public class Free extends Cell {
 		return "confilt de personnages";
 	}
 
+	public String getImagePath() {
+		return "assets/free.png";
+	}
+
 	/**
 	 * Transformer la case en chaîne de caractères
 	 *

@@ -30,6 +30,25 @@ public class Stone extends Cell {
 		return "un mur";
 	}
 
+	public String getImagePath() {
+		String path;
+
+		char prefix = 'v';
+		if(wall.getIsHorizontal()) {
+			prefix  = 'h';
+		}
+
+		if(wall.getFrom().equals(pos)) {
+			path ="assets/wall_" + prefix + "_0.png";
+		} else if(wall.getTo().equals(pos)) {
+			path ="assets/wall_" + prefix + "_2.png";
+		} else {
+			path ="assets/wall_" + prefix + "_1.png";
+		}
+
+		return path;
+	}
+
 	/**
 	 * Transformer la case en chaîne de caractères
 	 *

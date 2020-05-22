@@ -29,6 +29,10 @@ public class Side extends Cell {
 		return "bord du jeu";
 	}
 
+	public String getImagePath() {
+		return "assets/border.png";
+	}
+
 	/**
 	 * Transformer la case en chaîne de caractères
 	 *

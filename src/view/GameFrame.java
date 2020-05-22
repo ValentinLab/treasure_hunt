@@ -97,7 +97,6 @@ public class GameFrame extends JFrame {
             for(int x = 0; x < size; ++x) {
                 gridLabels[x][y] = new JLabel("", SwingConstants.CENTER);
                 gridLabels[x][y].setOpaque(true);
-                gridLabels[x][y].setBorder(new LineBorder(Color.BLACK));
 
                 gridPanel.add(gridLabels[x][y]);
             }

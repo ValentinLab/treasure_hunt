@@ -76,6 +76,10 @@ public class Teleportation extends Cell {
         return "Conflit de personnages";
     }
 
+    public String getImagePath() {
+        return "assets/teleportation.png";
+    }
+
     /**
      * Transformer la case en chaîne de caractères
      *

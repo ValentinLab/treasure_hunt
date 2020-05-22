@@ -39,6 +39,10 @@ public class Treasure extends Cell {
 		return "**gagné**";
 	}
 
+	public String getImagePath() {
+		return "assets/treasure.png";
+	}
+
 	/**
 	 * Transformer la case en chaîne de caractères
 	 *

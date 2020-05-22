@@ -103,44 +103,41 @@ public class GameController implements ActionListener {
         int boardSize = board.getSize();
 
         // Afficher les éléments de la grille
+        String labelImg;
         String labelTxt;
-        Color labelColor;
         for(int y = 0; y < boardSize; ++y) {
             for(int x = 0; x < boardSize; ++x) {
                 if(board.getCell(x, y).toString().equals("#")) {
                     labelTxt = "";
-                    labelColor = Color.BLUE;
                 } else if(board.getCell(x, y).toString().equals("+")) {
-                    if(x == 0 || x == boardSize-1) {
-                        labelTxt = (y > 0 && y < boardSize-1) ? String.valueOf(y) : "";
-                    } else if(y == 0 || y == boardSize-1) {
-                        labelTxt = (x > 0 && x < boardSize-1) ? String.valueOf(x) : "";
-                    } else {
-                        labelTxt = "";
-                    }
-                    labelColor = Color.RED;
+                    labelTxt = "";
                 } else if(board.getCell(x, y).toString().equals("T")) {
                     labelTxt = "";
-                    labelColor = Color.YELLOW;
                 } else if(board.getCell(x, y).toString().equals(".")) {
                     labelTxt = "";
-                    labelColor = Color.LIGHT_GRAY;
                 } else if(board.getCell(x, y).toString().charAt(0) == '?') {
                     if(board.getCell(x, y).toString().length() > 1) {
                         labelTxt = String.valueOf(board.getCell(x, y).toString().charAt(1));
-                        labelColor = Color.MAGENTA;
                     } else {
-                        labelTxt = "?";
-                        labelColor = Color.PINK;
+                        labelTxt = "";
                     }
                 } else {
                     labelTxt = board.getCell(x, y).toString();
-                    labelColor = Color.LIGHT_GRAY;
                 }
 
+                labelImg = board.getCell(x, y).getImagePath();
+                int labelSize = 500/boardSize;
+                ImageIcon imageIcon = new ImageIcon(
+                    new ImageIcon(labelImg).getImage().getScaledInstance(labelSize, labelSize, Image.SCALE_DEFAULT)
+                );
+                mf.getGridLabel(x, y).setIcon(imageIcon);
+
                 mf.getGridLabel(x, y).setText(labelTxt);
-                mf.getGridLabel(x, y).setBackground(labelColor);
+                mf.getGridLabel(x, y).setForeground(Color.WHITE);
+                mf.getGridLabel(x, y).setHorizontalTextPosition(JLabel.CENTER);
             }
         }
+
+        mf.repaint();
     }
 }

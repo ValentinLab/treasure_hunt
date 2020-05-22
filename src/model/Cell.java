@@ -25,6 +25,8 @@ public abstract class Cell implements Questionnable {
 	 */
 	public abstract String process(Hunter h);
 
+	public abstract String getImagePath();
+
 	/**
 	 * Transformer la case en chaîne de caractères
 	 *
