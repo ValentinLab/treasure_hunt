@@ -6,6 +6,11 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
+/**
+ * Interface graphique de l'éditeur de plateau
+ *
+ * @author Medhi Louison et Valentin Perignon
+ */
 public class EditFrame extends JFrame {
     // ----- Attributs -----
 

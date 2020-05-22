@@ -8,7 +8,7 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 /**
- * Interface graphique principale du jeu
+ * Interface graphique du jeu
  *
  * @author Medhi Louison et Valentin Perignon
  */
@@ -24,7 +24,7 @@ public class GameFrame extends JFrame {
     JPanel aboutPanel;
     JLabel[] aboutLabels;
 
-    // ----- Constructeur -----
+    // ----- Constructeurs -----
 
     public GameFrame(String builtBoard, Wall[] builtWalls) {
         // Création de la fenêtre
@@ -123,6 +123,7 @@ public class GameFrame extends JFrame {
      * Afficher la boîte de dialogue de victoire
      *
      * @param playerName Nom du joueur gagnant
+     * @return Valeur de retour d'une JOptionPane
      */
     public int printWinnerBox(String playerName) {
         return JOptionPane.showConfirmDialog(this,

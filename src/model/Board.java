@@ -64,6 +64,9 @@ public class Board {
 	/**
 	 * Initialiser le plateau
 	 * Permet de positionner les joueurs, les murs et le trésor
+	 *
+	 * @param builtBoard Chaîne représentant le plateau de jeu
+	 * @param builtWalls Murs du plateau
 	 */
 	public void initBoard(String builtBoard, Wall[] builtWalls) {
 		// Tableau de terrains
@@ -303,6 +306,8 @@ public class Board {
 	/**
 	 * Jouer un tour de jeu
 	 * Chaque joueur peut jouer un tour de jeu et interagir avec sa case cible
+	 *
+	 * @param movements Ensemble des mouvements réalisés par les joueurs
 	 */
 	public void playRound(String[] movements) {
 
@@ -322,6 +327,8 @@ public class Board {
 
 	/**
 	 * Vérifier si un joueur a gagné
+	 *
+	 * @return Le joueur qui gagne, null autrement
 	 */
 	public Hunter checkVictory() {
 		Hunter winner = null;

@@ -5,6 +5,9 @@ import controller.MainController;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Interface graphique principale (menu)
+ */
 public class MainFrame extends JFrame {
     // ----- Attributs -----
 
@@ -51,7 +54,7 @@ public class MainFrame extends JFrame {
         setVisible(true);
     }
 
-    // ----- Getters -----
+    // ----- Getter -----
 
     public JButton getPlayBtn() {
         return playBtn;
