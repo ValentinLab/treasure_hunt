@@ -9,7 +9,7 @@ import view.MainFrame;
  */
 public class Game {
 	public static void main(String args[]) {
-		// Lancement de la fenêtre
+		// Lancement de la fenêtre principale
 		MainFrame frame = new MainFrame();
 	}
 }
