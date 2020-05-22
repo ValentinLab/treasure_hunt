@@ -31,7 +31,7 @@ public class TeleportationPoint {
     public Teleportation chooseTeleCell(Hunter h) {
         // Obtenir une nouvelle case
         int teleCellsNumber  = teleportationPoints.size();
-        int randomIndex = 0, attempt = 0;
+        int randomIndex, attempt = 0;
         do{
             randomIndex = (int)(Math.random() * teleCellsNumber);
 

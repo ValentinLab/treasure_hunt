@@ -1,7 +1,6 @@
 package view;
 
 import controller.MainController;
-import sun.applet.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +18,7 @@ public class MainFrame extends JFrame {
         super("Chasse au trésor - Menu");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(500, 300);
+        setResizable(false);
 
         // Contrôleur de la fenêtre
         MainController contr = new MainController(this);

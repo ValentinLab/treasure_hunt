@@ -41,13 +41,13 @@ public class EditFrame extends JFrame {
         // Boutons
         JPanel validatePanel= new JPanel();
         toolsPanel.add(validatePanel);
+        cancelBtn = new JButton("Retour au menu");
+        cancelBtn.addActionListener(contr);
+        validatePanel.add(cancelBtn);
         validateBtn = new JButton("Valider le plateau");
         validateBtn.setEnabled(false);
         validateBtn.addActionListener(contr);
         validatePanel.add(validateBtn);
-        cancelBtn = new JButton("Retour au menu");
-        cancelBtn.addActionListener(contr);
-        validatePanel.add(cancelBtn);
         // Choix de l'outil de dessin
         JPanel radioPanel = new JPanel();
         toolsPanel.add(radioPanel);

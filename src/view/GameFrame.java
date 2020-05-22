@@ -1,7 +1,7 @@
 package view;
 
 import controller.GameController;
-import model.Wall;
+import model.Wall; // Le constructeur a besoin de connaitre Wall
 
 import java.awt.*;
 import javax.swing.*;
@@ -38,10 +38,10 @@ public class GameFrame extends JFrame {
 
         // --- Panel "Tour suivant" ---
         JPanel nextTurnPanel = new JPanel();
-        nextTurnBtn = new JButton("Tour suivant");
-        nextTurnPanel.add(nextTurnBtn);
         cancelBtn = new JButton("Retour au menu");
         nextTurnPanel.add(cancelBtn);
+        nextTurnBtn = new JButton("Tour suivant");
+        nextTurnPanel.add(nextTurnBtn);
 
         // --- Panel "Grille" ---
         gridPanel = new JPanel();

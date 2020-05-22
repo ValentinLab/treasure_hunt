@@ -75,6 +75,25 @@ public class EditController implements ActionListener {
         }
     }
 
+    private void enableTools() {
+        for(int i = 0; i < 3; ++i) {
+            ef.getToolBtn(i).setEnabled(true);
+            if(ef.getToolBtn(i).isSelected()) {
+                switch(i) {
+                    case 0:
+                        currentBrush = 'T';
+                        break;
+                    case 1:
+                        currentBrush = 'J';
+                        break;
+                    case 2:
+                        currentBrush = 'M';
+                        break;
+                }
+            }
+        }
+    }
+
     private void cancelEdit() {
         // Fermeture de la fenêtre principale
         ef.setVisible(false);
@@ -100,28 +119,33 @@ public class EditController implements ActionListener {
 
     private void cancelWallOnGrid() {
         // Activer les checkboxs
-        for(int i = 0; i < 3; ++i) {
-            ef.getToolBtn(i).setEnabled(true);
-            if(ef.getToolBtn(i).isSelected()) {
-                switch(i) {
-                    case 0:
-                        currentBrush = 'T';
-                        break;
-                    case 1:
-                        currentBrush = 'J';
-                        break;
-                    case 2:
-                        currentBrush = 'M';
-                        break;
-                }
-            }
-        }
+        enableTools();
 
         // Activer le bouton d'ajout
         ef.getAddWallBtn().setEnabled(true);
 
         // Désactiver le bouton acteuel
         ef.getCancelWallBtn().setEnabled(false);
+    }
+
+    private boolean checkWallPosition(int gridSize, int xCurrent, int yCurrent) {
+        boolean isGood = true;
+        for(int y = -1; y <= 1; ++y) {
+            for(int x = -1; x <= 1; ++x) {
+                int checkX = xCurrent + x, checkY = yCurrent + y;
+                if(checkX < 1 || checkX >= gridSize || checkY < 1 || checkY >= gridSize) {
+                    continue;
+                }
+
+                int checkPos = posToIndex(gridSize, checkX, checkY);
+                if(boardChar[checkPos] == '#') {
+                    isGood = false;
+                    break;
+                }
+            }
+        }
+
+        return isGood;
     }
 
     private void addElementOnGrid(Object obj) {
@@ -138,13 +162,15 @@ public class EditController implements ActionListener {
                 }
             }
 
-            if(xCurrent != -1 && yCurrent != -1) {
+            if(xCurrent != -1) {
                 break;
             }
         }
 
         // Ajouter l'élément
-        if(currentBrush == 'T') { // Ajout du trésor
+        if(currentBrush == 'T') {
+            // -- Ajout du trésor --
+
             int newPos = posToIndex(gridSize, xCurrent, yCurrent);
             if(boardChar[newPos] == '.') {
                 if(treasurePos != null) {
@@ -169,7 +195,9 @@ public class EditController implements ActionListener {
                     JOptionPane.ERROR_MESSAGE
                 );
             }
-        } else if(currentBrush == 'M') { // Téléportation
+        } else if(currentBrush == 'M') {
+            // -- Ajout d'une case de téléportation --
+
             int posInString = posToIndex(gridSize, xCurrent, yCurrent);
             if(boardChar[posInString] == '.') {
                 boardChar[posInString] = '?';
@@ -189,7 +217,9 @@ public class EditController implements ActionListener {
                     JOptionPane.ERROR_MESSAGE
                 );
             }
-        } else if(currentBrush == 'J') { // Joueur
+        } else if(currentBrush == 'J') {
+            // -- Ajout d'un joueur --
+
             int posInString = posToIndex(gridSize, xCurrent, yCurrent);
             if(boardChar[posInString] == '.') {
                 char playerLetter = (char)('A' + playerNumber);
@@ -218,25 +248,75 @@ public class EditController implements ActionListener {
                     JOptionPane.ERROR_MESSAGE
                 );
             }
-        } else if(currentBrush == 'W') { // Mur
+        } else if(currentBrush == 'W') {
+            // -- Ajout d'un mur --
             int posInString = posToIndex(gridSize, xCurrent, yCurrent);
 
             if(boardChar[posInString] == '.') {
+                // Vérifier qu'il n'y a pas de murs autour
+                boolean isGood = checkWallPosition(gridSize, xCurrent, yCurrent);
+
+                // Vérifier qu'il n'y a aucun mur autour
+                if(!isGood) {
+                    JOptionPane.showMessageDialog(
+                        ef,
+                        "Vous ne pouvez pas placer de mur si proche d'un autre.",
+                        "Erreur dans l'ajout d'un mur",
+                        JOptionPane.ERROR_MESSAGE
+                    );
+                }
+
+                // Vérifier que le mur n'est pas au bord du plateau
+                if(
+                    isGood
+                    && (xCurrent == 1 || xCurrent == gridSize - 2
+                    || yCurrent == 1 || yCurrent == gridSize - 2)
+                ) {
+                    JOptionPane.showMessageDialog(
+                        ef,
+                        "Vous ne pouvez pas placer de mur au bord du plateau.",
+                        "Erreur dans l'ajout d'un mur",
+                        JOptionPane.ERROR_MESSAGE
+                    );
+                    isGood = false;
+                }
+
                 if(
                     walls.isEmpty()
                     || (walls.getLast().getTo().getX() != 0 && walls.getLast().getTo().getY()  != 0 )
-                ) { // point de départ du mur
+                ) {
+                    // -> Ajout du point de départ du mur
+
+                    // Annuler l'ajout du mur
+                    if(!isGood) {
+                        cancelWallOnGrid();
+                        ef.getGridBtn(xCurrent, yCurrent).setText("");
+                        return;
+                    }
+
+                    // Ajouter le mur
                     walls.add(new Wall(new Position (xCurrent, yCurrent), new Position(0, 0)));
 
                     ef.getGridBtn(xCurrent, yCurrent).setText("#");
                     ef.getGridBtn(xCurrent, yCurrent).setBackground(Color.CYAN);
-                } else { // Point d'arrivé du mur
+                } else {
+                    // -> Ajout du point d'arrivé du mur
+
                     Position from = walls.getLast().getFrom();
+
+                    // Annuler l'ajout du mur
+                    if(!isGood) {
+                        cancelWallOnGrid();
+                        ef.getGridBtn(from.getX(), from.getY()).setText("");
+                        ef.getGridBtn(from.getX(), from.getY()).setBackground(Color.LIGHT_GRAY);
+                        walls.removeLast();
+                        return;
+                    }
 
                     int xFrom = from.getX(), yFrom = from.getY();
                     if ((xFrom == xCurrent && yFrom < yCurrent) || (xFrom < xCurrent && yFrom == yCurrent)) {
                         // Vérifier que le mur n'empiète rien
-                        boolean isGood = true;
+                        isGood = true;
                         for(int y = from.getY(); y <= yCurrent; ++y) {
                             for(int x = from.getX(); x <= xCurrent; ++x) {
                                 int targetPos = posToIndex(gridSize, x, y);
@@ -250,7 +330,7 @@ public class EditController implements ActionListener {
                             }
                         }
 
-                        // Ajout du mur
+                        // Ajouter le mur
                         if(isGood) {
                             walls.removeLast();
                             walls.add(new Wall(from, new Position(xCurrent, yCurrent)));
@@ -264,6 +344,11 @@ public class EditController implements ActionListener {
                                     ef.getGridBtn(x, y).setBackground(Color.BLUE);
                                 }
                             }
+
+                            // Remettre les boutons à l'état par défaut
+                            ef.getAddWallBtn().setEnabled(true);
+                            ef.getCancelWallBtn().setEnabled(false);
+                            enableTools();
                         } else {
                             JOptionPane.showMessageDialog(
                                 ef,
